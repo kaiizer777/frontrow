@@ -43,14 +43,14 @@ export function ChatRoomHeader({
   return (
     <div className="bg-white border-b border-slate-200/80 shrink-0 z-10">
       {/* Top Main Room Header */}
-      <div className="px-3.5 py-2.5 sm:px-4 sm:py-2.5 flex items-center justify-between gap-3">
+      <div className="px-2.5 py-2 sm:px-4 sm:py-2.5 flex items-center justify-between gap-2 sm:gap-3 min-w-0">
         {/* Left: Room Icon & Title */}
-        <div className="flex items-center gap-2.5 min-w-0 flex-1">
+        <div className="flex items-center gap-2 sm:gap-2.5 min-w-0 flex-1">
           {onBackToRooms && (
             <button
               type="button"
               onClick={onBackToRooms}
-              className="md:hidden p-1.5 rounded-xl border border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors shrink-0"
+              className="md:hidden p-1.5 rounded-xl border border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors shrink-0 touch-manipulation"
               aria-label="Back to rooms"
             >
               <ChevronLeft className="h-4 w-4" />
@@ -58,44 +58,45 @@ export function ChatRoomHeader({
           )}
 
           {/* Room Emoji Icon Badge */}
-          <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-primary-50 to-amber-50/60 border border-primary-100 flex items-center justify-center text-lg shadow-2xs shrink-0 select-none">
+          <div className="h-8 w-8 sm:h-9 sm:w-9 rounded-xl bg-gradient-to-br from-primary-50 to-amber-50/60 border border-primary-100 flex items-center justify-center text-base sm:text-lg shadow-2xs shrink-0 select-none">
             {emoji}
           </div>
 
           {/* Room Title & Description */}
           <div className="min-w-0 flex-1">
-            <div className="flex items-center gap-2 flex-wrap">
-              <h1 className="text-sm sm:text-base font-bold text-slate-900 font-display truncate">
+            <div className="flex items-center gap-1.5 sm:gap-2 flex-nowrap">
+              <h1 className="text-xs sm:text-base font-bold text-slate-900 font-display truncate">
                 {room.name}
               </h1>
 
               {/* Live Count Pill */}
-              <span className="inline-flex items-center gap-1.5 text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200/70 shrink-0">
-                <span className="relative flex h-2 w-2">
+              <span className="inline-flex items-center gap-1 sm:gap-1.5 text-[10px] sm:text-[11px] font-bold text-emerald-700 bg-emerald-50 px-1.5 sm:px-2 py-0.5 rounded-full border border-emerald-200/70 shrink-0 whitespace-nowrap">
+                <span className="relative flex h-1.5 w-1.5 sm:h-2 sm:w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 sm:h-2 sm:w-2 bg-emerald-500" />
                 </span>
-                <span>{room.onlineCount} online</span>
+                <span className="hidden min-[360px]:inline">{room.onlineCount} online</span>
+                <span className="min-[360px]:hidden inline">{room.onlineCount}</span>
               </span>
             </div>
 
-            <p className="text-[11px] text-slate-500 truncate">
+            <p className="text-[10px] sm:text-[11px] text-slate-500 truncate hidden min-[340px]:block">
               {room.description}
             </p>
           </div>
         </div>
 
         {/* Right: Signature Warm-Gradient Live Audio Jam Button & Members Trigger */}
-        <div className="flex items-center gap-2 shrink-0">
+        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
           {/* Live Audio Jam Studio Button — FRONTROW Warm Gradient Treatment */}
           <button
             type="button"
             onClick={onOpenLiveJam}
-            className="group relative flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-1.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-primary-600 via-primary-500 to-amber-500 hover:from-primary-500 hover:to-amber-500 border-t border-t-amber-200/60 border-x border-x-primary-600/60 border-b border-b-primary-800 shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_2px_6px_rgba(240,68,30,0.22)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.45),0_3px_8px_rgba(240,68,30,0.3)] active:translate-y-[0.5px] transition-all cursor-pointer select-none"
+            className="group relative flex items-center gap-1.5 sm:gap-2 px-2.5 py-1.5 sm:px-3.5 sm:py-1.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-primary-600 via-primary-500 to-amber-500 hover:from-primary-500 hover:to-amber-500 border-t border-t-amber-200/60 border-x border-x-primary-600/60 border-b border-b-primary-800 shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_2px_6px_rgba(240,68,30,0.22)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.45),0_3px_8px_rgba(240,68,30,0.3)] active:translate-y-[0.5px] transition-all cursor-pointer select-none touch-manipulation"
             title="Join Live Audio Jam Stage"
           >
             {/* Pulsing Live Audio Equalizer Wave Animation */}
-            <div className="flex items-center gap-0.5 h-3.5">
+            <div className="flex items-center gap-0.5 h-3 sm:h-3.5 shrink-0">
               <span className="w-0.5 h-full bg-white rounded-full animate-pulse" />
               <span
                 className="w-0.5 h-2/3 bg-amber-100 rounded-full animate-pulse"
@@ -111,8 +112,11 @@ export function ChatRoomHeader({
               />
             </div>
 
-            <span className="font-display tracking-tight text-white font-bold hidden xs:inline">
+            <span className="font-display tracking-tight text-white font-bold hidden sm:inline">
               Live Audio Jam
+            </span>
+            <span className="font-display tracking-tight text-white font-bold sm:hidden hidden min-[390px]:inline">
+              Live Jam
             </span>
 
             <span className="px-1.5 py-0.2 rounded-md bg-white/20 text-white text-[9px] font-black tracking-wider uppercase border border-white/30 backdrop-blur-xs">
@@ -125,14 +129,14 @@ export function ChatRoomHeader({
             type="button"
             onClick={onToggleMembers}
             className={cn(
-              "flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-semibold border transition-all cursor-pointer",
+              "flex items-center gap-1 sm:gap-1.5 px-2 py-1.5 sm:px-2.5 sm:py-1.5 rounded-xl text-xs font-semibold border transition-all cursor-pointer touch-manipulation shrink-0",
               isMembersOpen
                 ? "bg-slate-100 text-slate-900 border-slate-300 shadow-2xs font-bold"
                 : "bg-white text-slate-600 border-slate-200/90 hover:bg-slate-50 hover:text-slate-900"
             )}
             title="Toggle circle members panel"
           >
-            <Users2 className="h-3.5 w-3.5 text-slate-500" />
+            <Users2 className="h-3.5 w-3.5 text-slate-500 shrink-0" />
             <span className="hidden lg:inline text-xs">Members</span>
             <span className="text-[10px] font-bold text-slate-700 bg-slate-200/80 px-1.5 py-0.2 rounded-full">
               {room.members.length}
@@ -143,22 +147,22 @@ export function ChatRoomHeader({
 
       {/* Pinned Weekly Jam Challenge Alert Strip (Compact & Dismissible) */}
       {room.pinnedAnnouncement && showPinned && (
-        <div className="bg-gradient-to-r from-amber-500/10 via-orange-500/5 to-amber-500/10 border-t border-amber-200/60 px-3.5 py-1.5 sm:px-4 flex items-center justify-between gap-2.5 text-xs text-amber-950 animate-in fade-in duration-150">
-          <div className="flex items-center gap-2 min-w-0">
+        <div className="bg-gradient-to-r from-amber-500/10 via-orange-500/5 to-amber-500/10 border-t border-amber-200/60 px-2.5 py-1.5 sm:px-4 flex items-center justify-between gap-2 text-xs text-amber-950 animate-in fade-in duration-150">
+          <div className="flex items-center gap-1.5 sm:gap-2 min-w-0 flex-1">
             <span className="h-4.5 w-4.5 rounded-md bg-amber-500/20 text-amber-700 flex items-center justify-center shrink-0">
               <Trophy className="h-2.5 w-2.5" />
             </span>
-            <span className="font-semibold truncate text-[11px]">
+            <span className="font-semibold truncate text-[10px] sm:text-[11px]">
               <strong className="font-bold text-amber-900 mr-1">Challenge:</strong>
               {room.pinnedAnnouncement}
             </span>
           </div>
 
-          <div className="flex items-center gap-2 shrink-0">
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
             <button
               type="button"
               onClick={onOpenLiveJam}
-              className="text-[10px] font-bold text-amber-800 hover:text-amber-950 underline flex items-center gap-0.5 cursor-pointer whitespace-nowrap"
+              className="text-[10px] font-bold text-amber-800 hover:text-amber-950 underline flex items-center gap-0.5 cursor-pointer whitespace-nowrap touch-manipulation"
             >
               <span>Jam Stage</span>
               <ArrowRight className="h-2.5 w-2.5" />
@@ -167,7 +171,7 @@ export function ChatRoomHeader({
             <button
               type="button"
               onClick={() => setShowPinned(false)}
-              className="text-[10px] font-medium text-slate-400 hover:text-slate-700 cursor-pointer p-0.5"
+              className="text-[10px] font-medium text-slate-400 hover:text-slate-700 cursor-pointer p-0.5 touch-manipulation"
               title="Dismiss banner"
             >
               <X className="h-3 w-3" />

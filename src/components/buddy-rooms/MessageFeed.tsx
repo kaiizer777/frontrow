@@ -26,9 +26,9 @@ export function MessageFeed({
   }, [messages.length]);
 
   return (
-    <div className="flex-1 overflow-y-auto p-3.5 sm:p-4 space-y-3 min-h-0">
+    <div className="flex-1 overflow-y-auto p-2.5 sm:p-4 space-y-2.5 sm:space-y-3 min-h-0 overscroll-y-contain [-webkit-overflow-scrolling:touch]">
       {/* Sleek, Compact Room Introduction Card */}
-      <div className="p-3 sm:p-3.5 rounded-2xl bg-gradient-to-br from-primary-50/40 via-amber-50/20 to-white border border-primary-100/70 shadow-2xs space-y-1.5">
+      <div className="p-2.5 sm:p-3.5 rounded-2xl bg-gradient-to-br from-primary-50/40 via-amber-50/20 to-white border border-primary-100/70 shadow-2xs space-y-1.5">
         <div className="flex items-center gap-2">
           <div className="h-6 w-6 rounded-lg bg-gradient-to-tr from-primary-600 to-amber-500 text-white flex items-center justify-center font-bold text-xs shadow-2xs shrink-0">
             #

@@ -77,12 +77,12 @@ export function CompactRoomBar({
   return (
     <div
       className={cn(
-        "bg-slate-50/80 border-b border-slate-200/80 px-3 py-2 shrink-0 select-none flex items-center justify-between gap-2.5 min-w-0",
+        "bg-slate-50/80 border-b border-slate-200/80 px-2.5 sm:px-3 py-1.5 sm:py-2 shrink-0 select-none flex items-center justify-between gap-2 sm:gap-2.5 min-w-0",
         className
       )}
     >
       {/* Left & Middle: Category Switcher + Room Pills in a Single Seamless Scroll Strip */}
-      <div className="flex items-center gap-2 overflow-x-auto scrollbar-none min-w-0 flex-1 py-0.5">
+      <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto scrollbar-none min-w-0 flex-1 py-0.5 touch-pan-x [-webkit-overflow-scrolling:touch]">
         {/* Category Filter Pills */}
         <div className="flex items-center gap-1 shrink-0 bg-slate-200/60 p-0.5 rounded-xl">
           {CATEGORIES.map((cat) => {
@@ -93,7 +93,7 @@ export function CompactRoomBar({
                 type="button"
                 onClick={() => setSelectedCategory(cat.id)}
                 className={cn(
-                  "flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer whitespace-nowrap",
+                  "flex items-center gap-1 px-2 sm:px-2.5 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer whitespace-nowrap touch-manipulation active:scale-95",
                   isSelected
                     ? "bg-white text-slate-900 shadow-2xs font-bold border border-slate-200/90"
                     : "text-slate-600 hover:text-slate-900 hover:bg-white/50"
@@ -123,7 +123,7 @@ export function CompactRoomBar({
                 type="button"
                 onClick={() => onSelectRoom(room.id)}
                 className={cn(
-                  "group flex items-center gap-1.5 px-2.5 py-1 rounded-xl text-xs font-semibold whitespace-nowrap transition-all shrink-0 border cursor-pointer",
+                  "group flex items-center gap-1.5 px-2.5 py-1 rounded-xl text-xs font-semibold whitespace-nowrap transition-all shrink-0 border cursor-pointer touch-manipulation active:scale-98",
                   isSelected
                     ? "bg-white text-slate-950 border-primary-400 ring-2 ring-primary-500/20 shadow-xs font-bold"
                     : "bg-white/80 text-slate-600 border-slate-200/90 hover:bg-white hover:text-slate-900 hover:border-slate-300 shadow-2xs"

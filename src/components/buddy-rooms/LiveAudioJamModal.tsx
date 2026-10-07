@@ -83,33 +83,33 @@ export function LiveAudioJamModal({
         </div>
 
         {/* Stage Area */}
-        <div className="p-5 sm:p-6 space-y-6 overflow-y-auto flex-1">
+        <div className="p-4 sm:p-6 space-y-4 sm:space-y-6 overflow-y-auto flex-1 overscroll-y-contain [-webkit-overflow-scrolling:touch]">
           {/* Main Jam Stage Banner */}
           <div className="text-center space-y-1">
-            <span className="text-[11px] font-bold uppercase tracking-widest text-primary-400">
+            <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-primary-400">
               Active Stage — Audio Feed
             </span>
-            <h4 className="text-sm font-semibold text-slate-200">
+            <h4 className="text-xs sm:text-sm font-semibold text-slate-200">
               Low-latency stereo audio feed with pedalboard & mic direct input
             </h4>
           </div>
 
           {/* Speakers Grid */}
-          <div className="grid grid-cols-3 gap-3 sm:gap-4">
+          <div className="grid grid-cols-3 gap-2 sm:gap-4">
             {speakers.map((member, idx) => {
               const isSpeaking = idx === activeSpeakerIdx;
               return (
                 <div
                   key={member.id}
                   className={cn(
-                    "relative p-3.5 rounded-2xl flex flex-col items-center text-center transition-all",
+                    "relative p-2.5 sm:p-3.5 rounded-2xl flex flex-col items-center text-center transition-all",
                     isSpeaking
-                      ? "bg-primary-950/40 border-2 border-primary-400 ring-4 ring-primary-500/20 shadow-lg shadow-primary-900/30"
+                      ? "bg-primary-950/40 border-2 border-primary-400 ring-2 sm:ring-4 ring-primary-500/20 shadow-lg shadow-primary-900/30"
                       : "bg-slate-800/60 border border-slate-700/50"
                   )}
                 >
                   {/* Speaking Wave Glow */}
-                  <div className="relative mb-2">
+                  <div className="relative mb-1.5 sm:mb-2">
                     {isSpeaking && (
                       <span className="absolute -inset-2 rounded-full bg-primary-500/30 animate-ping pointer-events-none" />
                     )}
@@ -117,12 +117,12 @@ export function LiveAudioJamModal({
                       src={member.avatar}
                       alt={member.name}
                       fallback={member.name}
-                      size="lg"
-                      className="border-2 border-slate-700"
+                      size="md"
+                      className="sm:size-lg border-2 border-slate-700"
                     />
                     {isSpeaking && (
-                      <span className="absolute -bottom-1 -right-1 h-5 w-5 rounded-full bg-emerald-500 flex items-center justify-center text-white text-[10px] shadow-sm">
-                        <Volume2 className="h-3 w-3" />
+                      <span className="absolute -bottom-1 -right-1 h-4 w-4 sm:h-5 sm:w-5 rounded-full bg-emerald-500 flex items-center justify-center text-white text-[9px] sm:text-[10px] shadow-sm">
+                        <Volume2 className="h-2.5 w-2.5 sm:h-3 sm:w-3" />
                       </span>
                     )}
                   </div>
@@ -130,13 +130,13 @@ export function LiveAudioJamModal({
                   <span className="text-xs font-bold text-slate-100 truncate w-full">
                     {member.name}
                   </span>
-                  <span className="text-[10px] text-slate-400 font-medium capitalize truncate w-full">
+                  <span className="text-[9px] sm:text-[10px] text-slate-400 font-medium capitalize truncate w-full">
                     {member.specialty || member.role}
                   </span>
 
                   {/* Visualizer Wave Bar Simulation */}
                   {isSpeaking ? (
-                    <div className="flex items-center gap-0.5 mt-2 h-3">
+                    <div className="flex items-center gap-0.5 mt-1.5 sm:mt-2 h-2.5 sm:h-3">
                       <span className="w-1 bg-primary-400 h-full rounded-full animate-bounce" />
                       <span
                         className="w-1 bg-primary-400 h-2/3 rounded-full animate-bounce"
@@ -152,7 +152,7 @@ export function LiveAudioJamModal({
                       />
                     </div>
                   ) : (
-                    <div className="flex items-center gap-0.5 mt-2 h-3 opacity-30">
+                    <div className="flex items-center gap-0.5 mt-1.5 sm:mt-2 h-2.5 sm:h-3 opacity-30">
                       <span className="w-1 bg-slate-500 h-1 rounded-full" />
                       <span className="w-1 bg-slate-500 h-1 rounded-full" />
                       <span className="w-1 bg-slate-500 h-1 rounded-full" />
@@ -165,18 +165,18 @@ export function LiveAudioJamModal({
           </div>
 
           {/* Listeners Section */}
-          <div className="bg-slate-800/40 rounded-2xl p-4 border border-slate-800 space-y-2">
+          <div className="bg-slate-800/40 rounded-2xl p-3 sm:p-4 border border-slate-800 space-y-2">
             <div className="flex items-center justify-between text-xs text-slate-400 font-semibold">
-              <span className="flex items-center gap-1.5">
-                <Headphones className="h-3.5 w-3.5 text-slate-400" />
-                <span>Audience & Jam Listeners ({room.onlineCount})</span>
+              <span className="flex items-center gap-1.5 truncate">
+                <Headphones className="h-3.5 w-3.5 text-slate-400 shrink-0" />
+                <span className="truncate">Audience ({room.onlineCount})</span>
               </span>
-              <span className="text-[11px] text-primary-400 font-bold">
+              <span className="text-[10px] sm:text-[11px] text-primary-400 font-bold shrink-0">
                 HQ 320kbps Audio
               </span>
             </div>
 
-            <div className="flex items-center gap-2 overflow-x-auto py-1">
+            <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto py-1 scrollbar-none touch-pan-x [-webkit-overflow-scrolling:touch]">
               {room.members.map((m) => (
                 <div key={m.id} className="relative group shrink-0">
                   <Avatar
@@ -196,12 +196,12 @@ export function LiveAudioJamModal({
         </div>
 
         {/* Action Controls Bar */}
-        <div className="p-4 sm:p-5 border-t border-slate-800 bg-slate-900 flex items-center justify-between gap-3">
+        <div className="p-3.5 sm:p-5 border-t border-slate-800 bg-slate-900 flex items-center justify-between gap-2 sm:gap-3">
           <button
             type="button"
             onClick={() => setIsMuted(!isMuted)}
             className={cn(
-              "flex items-center gap-2 px-4 py-2.5 rounded-xl font-bold text-xs transition-all",
+              "flex items-center gap-1.5 sm:gap-2 px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl font-bold text-xs transition-all cursor-pointer touch-manipulation active:scale-95",
               isMuted
                 ? "bg-rose-500/20 text-rose-400 border border-rose-500/40"
                 : "bg-slate-800 hover:bg-slate-700 text-white border border-slate-700"
@@ -209,23 +209,23 @@ export function LiveAudioJamModal({
           >
             {isMuted ? (
               <>
-                <MicOff className="h-4 w-4" />
-                <span>Unmute Mic</span>
+                <MicOff className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                <span>Unmute</span>
               </>
             ) : (
               <>
-                <Mic className="h-4 w-4 text-emerald-400" />
-                <span>Mic Active</span>
+                <Mic className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-emerald-400" />
+                <span>Live Mic</span>
               </>
             )}
           </button>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2">
             <Button
               variant="outline"
               size="sm"
               onClick={onClose}
-              className="bg-slate-800 border-slate-700 text-slate-300 hover:text-white hover:bg-slate-700 text-xs"
+              className="bg-slate-800 border-slate-700 text-slate-300 hover:text-white hover:bg-slate-700 text-xs py-1.5 px-2.5 sm:px-3 touch-manipulation"
             >
               Minimize
             </Button>
@@ -233,9 +233,9 @@ export function LiveAudioJamModal({
               variant="destructive"
               size="sm"
               onClick={onClose}
-              className="text-xs"
+              className="text-xs py-1.5 px-2.5 sm:px-3 touch-manipulation"
             >
-              Leave Stage
+              Leave
             </Button>
           </div>
         </div>

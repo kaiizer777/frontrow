@@ -58,15 +58,16 @@ export function RoomMembersList({
           <button
             type="button"
             onClick={onClose}
-            className="p-1 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
+            className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 active:bg-slate-200 transition-colors cursor-pointer touch-manipulation"
+            aria-label="Close members panel"
           >
-            <X className="h-3.5 w-3.5" />
+            <X className="h-4 w-4" />
           </button>
         )}
       </div>
 
       {/* Members Scroll Body */}
-      <div className="flex-1 overflow-y-auto p-2.5 space-y-4 min-h-0">
+      <div className="flex-1 overflow-y-auto p-2.5 space-y-4 min-h-0 overscroll-y-contain [-webkit-overflow-scrolling:touch]">
         {/* Mentors Section */}
         {mentors.length > 0 && (
           <div className="space-y-1.5">
@@ -223,11 +224,11 @@ export function RoomMembersList({
       </div>
 
       {/* Invite Share CTA */}
-      <div className="p-2.5 border-t border-slate-200/80 bg-white shrink-0">
+      <div className="p-2.5 pb-[calc(0.625rem+env(safe-area-inset-bottom,0px))] border-t border-slate-200/80 bg-white shrink-0">
         <button
           type="button"
           onClick={handleCopyInvite}
-          className="w-full flex items-center justify-center gap-1.5 px-2 py-1.5 rounded-lg text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200/90 transition-all cursor-pointer"
+          className="w-full flex items-center justify-center gap-1.5 px-2 py-1.5 rounded-lg text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200/90 transition-all cursor-pointer touch-manipulation active:scale-98"
         >
           {copiedLink ? (
             <>

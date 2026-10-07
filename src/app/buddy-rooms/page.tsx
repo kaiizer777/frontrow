@@ -16,10 +16,10 @@ export default function BuddyRoomsPage() {
   return (
     <AppShell
       fluid
-      containerClassName="w-full h-full flex-1 flex flex-col p-2 sm:p-3.5 lg:p-4 overflow-hidden"
+      containerClassName="w-full h-full flex-1 flex flex-col p-0 sm:p-3.5 lg:p-4 overflow-hidden"
     >
       {/* Studio Workspace Shell */}
-      <div className="flex-1 flex flex-col h-full min-h-0 bg-white rounded-2xl border border-slate-200/90 shadow-2xs overflow-hidden">
+      <div className="flex-1 flex flex-col h-full min-h-0 bg-white rounded-none sm:rounded-2xl border-0 sm:border sm:border-slate-200/90 sm:shadow-2xs overflow-hidden">
         {/* Concise Top Channel Tabs & Filters Bar */}
         <CompactRoomBar
           rooms={buddyRooms}

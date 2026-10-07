@@ -132,7 +132,7 @@ export function ChatRoomView({
       )}
     >
       {/* Center Chat View Area (Header + Messages Feed + Input) */}
-      <div className="flex-1 flex flex-col min-w-0 h-full">
+      <div className="flex-1 flex flex-col min-w-0 h-full overflow-hidden">
         <ChatRoomHeader
           room={room}
           onBackToRooms={onBackToRooms}
@@ -166,10 +166,10 @@ export function ChatRoomView({
         <div className="xl:hidden">
           <div
             onClick={() => setIsMembersOpen(false)}
-            className="fixed inset-0 z-40 bg-slate-900/30 backdrop-blur-xs"
+            className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs transition-opacity animate-in fade-in duration-200"
             aria-hidden="true"
           />
-          <div className="fixed top-0 bottom-0 right-0 z-50 w-72 max-w-[85vw] bg-white shadow-2xl animate-in slide-in-from-right duration-200">
+          <div className="fixed top-0 bottom-0 right-0 z-50 w-72 max-w-[85vw] bg-white shadow-2xl animate-in slide-in-from-right duration-200 flex flex-col">
             <RoomMembersList
               room={room}
               onClose={() => setIsMembersOpen(false)}

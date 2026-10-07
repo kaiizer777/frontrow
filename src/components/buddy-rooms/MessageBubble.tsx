@@ -58,7 +58,7 @@ export function MessageBubble({
   return (
     <div
       className={cn(
-        "group relative flex items-start gap-3 p-2.5 sm:p-3 rounded-2xl transition-all shadow-2xs",
+        "group relative flex items-start gap-2.5 sm:gap-3 p-2 sm:p-3 rounded-2xl transition-all shadow-2xs max-w-full overflow-hidden",
         isCurrentUser
           ? "bg-primary-50/50 border border-primary-100/80"
           : "bg-slate-50/60 hover:bg-slate-50/95 border border-slate-200/70 hover:border-slate-200"
@@ -76,9 +76,9 @@ export function MessageBubble({
       </div>
 
       {/* Message Content Container */}
-      <div className="flex-1 min-w-0 space-y-1.5">
+      <div className="flex-1 min-w-0 space-y-1.5 overflow-hidden">
         {/* Author Info & Badges */}
-        <div className="flex flex-wrap items-center gap-1.5 leading-none">
+        <div className="flex flex-wrap items-center gap-1 sm:gap-1.5 leading-none">
           <span
             className={cn(
               "text-xs font-bold",
@@ -92,7 +92,7 @@ export function MessageBubble({
           {message.sender.badge && (
             <span
               className={cn(
-                "inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full border shadow-2xs",
+                "inline-flex items-center gap-1 text-[10px] font-bold px-1.5 sm:px-2 py-0.5 rounded-full border shadow-2xs",
                 message.sender.badge.toLowerCase().includes("mentor") ||
                   message.sender.badge.toLowerCase().includes("master")
                   ? "bg-gradient-to-r from-amber-50 to-amber-100/90 text-amber-900 border-amber-300/80"
@@ -128,13 +128,13 @@ export function MessageBubble({
 
         {/* Audio / Media Attachment */}
         {message.attachment && (
-          <div className="pt-1">
+          <div className="pt-1 max-w-full">
             {message.attachment.type === "audio" ? (
-              <div className="flex items-center gap-2.5 p-2.5 bg-white border border-slate-200/90 rounded-xl shadow-2xs max-w-sm">
+              <div className="flex items-center gap-2 sm:gap-2.5 p-2 sm:p-2.5 bg-white border border-slate-200/90 rounded-xl shadow-2xs w-full max-w-sm">
                 <button
                   type="button"
                   onClick={() => setIsPlayingAudio(!isPlayingAudio)}
-                  className="h-8 w-8 rounded-lg bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-primary-600 text-white flex items-center justify-center shrink-0 shadow-2xs transition-all cursor-pointer active:scale-95"
+                  className="h-8 w-8 rounded-lg bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-primary-600 text-white flex items-center justify-center shrink-0 shadow-2xs transition-all cursor-pointer active:scale-95 touch-manipulation"
                   title={isPlayingAudio ? "Pause clip" : "Play audio snippet"}
                 >
                   {isPlayingAudio ? (
@@ -146,16 +146,16 @@ export function MessageBubble({
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between text-[11px] font-bold text-slate-800 mb-1">
                     <span className="truncate">{message.attachment.title || "Audio Snippet"}</span>
-                    <span className="text-slate-400 font-mono text-[10px]">0:42</span>
+                    <span className="text-slate-400 font-mono text-[10px] ml-1 shrink-0">0:42</span>
                   </div>
                   {/* Waveform graphic */}
-                  <div className="flex items-center gap-0.5 h-3.5">
+                  <div className="flex items-center gap-0.5 h-3.5 overflow-hidden">
                     {[40, 70, 90, 30, 80, 100, 60, 45, 85, 95, 50, 70, 30, 90, 100, 60, 40, 80, 50, 75, 45, 85].map(
                       (height, i) => (
                         <span
                           key={i}
                           className={cn(
-                            "w-0.5 rounded-full transition-all duration-200",
+                            "w-0.5 rounded-full transition-all duration-200 shrink-0",
                             isPlayingAudio && i % 2 === 0
                               ? "bg-primary-500 animate-pulse"
                               : "bg-slate-300"
@@ -168,7 +168,7 @@ export function MessageBubble({
                 </div>
               </div>
             ) : message.attachment.type === "image" ? (
-              <div className="rounded-xl overflow-hidden border border-slate-200/90 shadow-2xs max-w-xs">
+              <div className="rounded-xl overflow-hidden border border-slate-200/90 shadow-2xs w-full max-w-xs sm:max-w-sm">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={message.attachment.url}
@@ -189,7 +189,7 @@ export function MessageBubble({
                 type="button"
                 onClick={() => onToggleReaction(message.id, rx.emoji)}
                 className={cn(
-                  "inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold border transition-all cursor-pointer select-none",
+                  "inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold border transition-all cursor-pointer select-none touch-manipulation active:scale-95",
                   rx.userReacted
                     ? "bg-primary-50 border-primary-300 text-primary-800 shadow-2xs ring-1 ring-primary-400/20"
                     : "bg-white border-slate-200/90 text-slate-600 hover:border-slate-300 hover:bg-slate-50 shadow-2xs"
@@ -206,14 +206,14 @@ export function MessageBubble({
             <button
               type="button"
               onClick={() => setShowEmojiMenu(!showEmojiMenu)}
-              className="inline-flex items-center justify-center h-5.5 w-5.5 rounded-full bg-white border border-slate-200/90 text-slate-400 hover:text-slate-700 hover:border-slate-300 hover:bg-slate-50 transition-colors shadow-2xs cursor-pointer"
+              className="inline-flex items-center justify-center h-5.5 w-5.5 rounded-full bg-white border border-slate-200/90 text-slate-400 hover:text-slate-700 hover:border-slate-300 hover:bg-slate-50 transition-colors shadow-2xs cursor-pointer touch-manipulation active:scale-95"
               title="Add reaction"
             >
               <Smile className="h-3 w-3" />
             </button>
 
             {showEmojiMenu && (
-              <div className="absolute left-0 bottom-full mb-1 z-30 bg-white border border-slate-200 rounded-xl shadow-lg p-1.5 flex items-center gap-1 animate-in fade-in zoom-in-95 duration-100">
+              <div className="absolute left-0 bottom-full mb-1 z-30 bg-white border border-slate-200 rounded-xl shadow-lg p-1 sm:p-1.5 flex items-center gap-1 animate-in fade-in zoom-in-95 duration-100 max-w-[calc(100vw-3.5rem)] overflow-x-auto scrollbar-none">
                 {QUICK_EMOJIS.map((emoji) => (
                   <button
                     key={emoji}
@@ -222,7 +222,7 @@ export function MessageBubble({
                       onAddReaction(message.id, emoji);
                       setShowEmojiMenu(false);
                     }}
-                    className="h-6.5 w-6.5 rounded-lg hover:bg-slate-100 flex items-center justify-center text-sm transition-transform hover:scale-125 cursor-pointer"
+                    className="h-6.5 w-6.5 rounded-lg hover:bg-slate-100 flex items-center justify-center text-sm transition-transform hover:scale-125 active:scale-125 cursor-pointer touch-manipulation shrink-0"
                   >
                     {emoji}
                   </button>
