@@ -81,7 +81,7 @@ export function ChatInput({ onSendMessage, roomName }: ChatInputProps) {
 
   return (
     <div className="p-2.5 sm:p-3 bg-white border-t border-slate-200/80 shrink-0 space-y-1.5 z-10">
-      {/* Quick Emoji Toolbar (Tiny & clean) */}
+      {/* Quick Emoji Toolbar */}
       <div className="flex items-center gap-1 overflow-x-auto pb-0.5 scrollbar-none">
         <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mr-1 hidden sm:inline">
           Quick:
@@ -91,7 +91,7 @@ export function ChatInput({ onSendMessage, roomName }: ChatInputProps) {
             key={em}
             type="button"
             onClick={() => setText((prev) => prev + em)}
-            className="px-1.5 py-0.5 rounded-md text-xs bg-slate-50 hover:bg-slate-100 hover:scale-110 border border-slate-200/60 transition-all cursor-pointer select-none"
+            className="px-2 py-0.5 rounded-lg text-xs bg-slate-100/70 hover:bg-primary-50 hover:text-primary-700 hover:border-primary-200 border border-slate-200/60 transition-all cursor-pointer select-none"
           >
             {em}
           </button>
@@ -101,7 +101,7 @@ export function ChatInput({ onSendMessage, roomName }: ChatInputProps) {
       {/* Main Input Bar */}
       <form
         onSubmit={handleSubmit}
-        className="flex items-center gap-1.5 bg-slate-50 border border-slate-200/90 rounded-xl p-1 focus-within:ring-2 focus-within:ring-primary-500/20 focus-within:border-primary-500 focus-within:bg-white transition-all shadow-2xs"
+        className="flex items-center gap-1.5 bg-slate-50/80 border border-slate-200/90 rounded-2xl p-1.5 focus-within:ring-2 focus-within:ring-primary-500/20 focus-within:border-primary-500 focus-within:bg-white transition-all shadow-2xs"
       >
         {/* Attachment Shortcuts */}
         <div className="flex items-center gap-0.5 pl-0.5">
@@ -109,21 +109,21 @@ export function ChatInput({ onSendMessage, roomName }: ChatInputProps) {
             type="button"
             onClick={handleSendAudioDummy}
             className={cn(
-              "p-1.5 rounded-lg text-slate-500 hover:text-primary-600 hover:bg-primary-50 transition-colors cursor-pointer",
+              "p-1.5 rounded-xl text-slate-400 hover:text-primary-600 hover:bg-primary-50 transition-colors cursor-pointer",
               isRecordingDummy && "text-rose-500 animate-pulse bg-rose-50"
             )}
             title="Attach live audio clip snippet"
           >
-            <Mic className="h-3.5 w-3.5" />
+            <Mic className="h-4 w-4" />
           </button>
 
           <button
             type="button"
             onClick={handleSendImageDummy}
-            className="p-1.5 rounded-lg text-slate-500 hover:text-primary-600 hover:bg-primary-50 transition-colors cursor-pointer hidden sm:flex"
+            className="p-1.5 rounded-xl text-slate-400 hover:text-primary-600 hover:bg-primary-50 transition-colors cursor-pointer hidden sm:flex"
             title="Attach gear photo or craft progress"
           >
-            <ImageIcon className="h-3.5 w-3.5" />
+            <ImageIcon className="h-4 w-4" />
           </button>
         </div>
 
@@ -135,7 +135,7 @@ export function ChatInput({ onSendMessage, roomName }: ChatInputProps) {
           onChange={(e) => setText(e.target.value)}
           onKeyDown={handleKeyDown}
           placeholder={`Message #${roomName.toLowerCase().replace(/\s+/g, "-")}...`}
-          className="flex-1 bg-transparent border-0 px-2 py-1.5 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-hidden min-w-0"
+          className="flex-1 bg-transparent border-0 px-2 py-1.5 text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-hidden min-w-0"
         />
 
         {/* Emoji Trigger Menu */}
@@ -143,18 +143,18 @@ export function ChatInput({ onSendMessage, roomName }: ChatInputProps) {
           <button
             type="button"
             onClick={() => setShowEmojiPicker(!showEmojiPicker)}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
+            className="p-1.5 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
             title="Emoji selector"
           >
-            <Smile className="h-3.5 w-3.5" />
+            <Smile className="h-4 w-4" />
           </button>
 
           {showEmojiPicker && (
-            <div className="absolute right-0 bottom-full mb-2 z-40 bg-white border border-slate-200 rounded-2xl shadow-xl p-2.5 w-60 animate-in fade-in zoom-in-95">
-              <div className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1.5">
+            <div className="absolute right-0 bottom-full mb-2 z-40 bg-white border border-slate-200/90 rounded-2xl shadow-xl p-3 w-64 animate-in fade-in zoom-in-95">
+              <div className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">
                 Hobby Reactions
               </div>
-              <div className="grid grid-cols-6 gap-1 text-base">
+              <div className="grid grid-cols-6 gap-1.5 text-base">
                 {[
                   "🎸", "🎹", "☕", "📸", "🏺", "🎨",
                   "🔥", "👏", "💡", "✨", "❤️", "🙌",
@@ -167,7 +167,7 @@ export function ChatInput({ onSendMessage, roomName }: ChatInputProps) {
                       setText((prev) => prev + emoji);
                       setShowEmojiPicker(false);
                     }}
-                    className="h-7 w-7 rounded-lg hover:bg-slate-100 flex items-center justify-center transition-transform hover:scale-125 cursor-pointer"
+                    className="h-7 w-7 rounded-lg hover:bg-slate-100 flex items-center justify-center transition-transform hover:scale-125 cursor-pointer text-base"
                   >
                     {emoji}
                   </button>
@@ -177,17 +177,20 @@ export function ChatInput({ onSendMessage, roomName }: ChatInputProps) {
           )}
         </div>
 
-        {/* Send Button */}
-        <Button
+        {/* Tactile Send Button */}
+        <button
           type="submit"
-          variant="primary"
-          size="sm"
           disabled={!text.trim()}
-          className="rounded-lg px-2.5 sm:px-3 py-1.5 text-xs font-bold gap-1 shadow-2xs shrink-0"
+          className={cn(
+            "flex items-center gap-1 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer shadow-2xs shrink-0 select-none",
+            text.trim()
+              ? "bg-gradient-to-r from-primary-600 via-primary-500 to-amber-500 text-white hover:from-primary-500 hover:to-amber-500 border-t border-t-amber-200/60 border-x border-x-primary-600/60 border-b border-b-primary-800 shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_2px_4px_rgba(240,68,30,0.22)] active:translate-y-[0.5px]"
+              : "bg-slate-100 text-slate-400 border border-slate-200/80 cursor-not-allowed"
+          )}
         >
           <span className="hidden sm:inline">Send</span>
-          <Send className="h-3 w-3" />
-        </Button>
+          <Send className="h-3.5 w-3.5" />
+        </button>
       </form>
     </div>
   );
