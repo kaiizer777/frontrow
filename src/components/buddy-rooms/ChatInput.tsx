@@ -135,7 +135,7 @@ export function ChatInput({ onSendMessage, roomName }: ChatInputProps) {
           onChange={(e) => setText(e.target.value)}
           onKeyDown={handleKeyDown}
           placeholder={`Message #${roomName.toLowerCase().replace(/\s+/g, "-")}...`}
-          className="flex-1 bg-transparent border-0 px-1.5 sm:px-2 py-1.5 text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-hidden min-w-0"
+          className="flex-1 bg-transparent border-0 px-1.5 sm:px-2 py-1.5 text-base sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-hidden min-w-0"
         />
 
         {/* Emoji Trigger Menu */}

@@ -15,7 +15,7 @@ export function AppShell({ children, containerClassName, fluid = false }: AppShe
   const [sidebarOpen, setSidebarOpen] = React.useState(false);
 
   return (
-    <div className={cn("bg-canvas flex flex-col", fluid ? "h-screen overflow-hidden" : "min-h-screen")}>
+    <div className={cn("bg-canvas flex flex-col", fluid ? "h-[100dvh] overflow-hidden" : "min-h-screen")}>
       <Navbar onMenuToggle={() => setSidebarOpen((prev) => !prev)} />
       <div className="flex flex-1 min-h-0 overflow-hidden">
         <Sidebar

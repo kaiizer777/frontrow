@@ -16,7 +16,7 @@ export function Navbar({ onMenuToggle }: { onMenuToggle?: () => void }) {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-30 w-full bg-white/95 backdrop-blur-md border-b border-slate-200/80 md:pl-64 transition-all">
+    <header className="sticky top-0 z-30 w-full bg-white/95 backdrop-blur-md border-b border-slate-200/80 md:pl-64 transition-all shrink-0">
       <div className="flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8 w-full max-w-7xl mx-auto">
         {/* Mobile Left: Brand Logo */}
         <div className="flex items-center md:hidden">
@@ -32,7 +32,7 @@ export function Navbar({ onMenuToggle }: { onMenuToggle?: () => void }) {
             <input
               type="text"
               placeholder="Search hobbies, mentors, buddy rooms... (Press ⌘K)"
-              className="w-full h-9 pl-9 pr-12 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 focus:bg-white transition-all shadow-[0_1px_2px_rgba(15,23,42,0.03)]"
+              className="w-full h-9 pl-9 pr-12 rounded-lg bg-slate-50 border border-slate-200 text-base sm:text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 focus:bg-white transition-all shadow-[0_1px_2px_rgba(15,23,42,0.03)]"
               readOnly
             />
             <kbd className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 rounded border border-slate-200 bg-white px-1.5 py-0.5 text-[10px] font-semibold text-slate-400 shadow-2xs">
