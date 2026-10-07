@@ -69,12 +69,12 @@ FRONTROW is a hobby learning platform where users can explore, learn, and connec
 - Responsive grid layout (cards arranged nicely)
 
 **Checkboxes:**
-- [ ] Dashboard set as root route (`/`)
-- [ ] Welcome/greeting + streak/progress widget
-- [ ] Enrolled courses section
-- [ ] Recommended hobbies/quizzes widget (links to Phase 6 page)
-- [ ] Quick-access cards to Buddy Rooms & Subscriptions
-- [ ] Responsive polish pass
+- [x] Dashboard set as root route (`/`)
+- [x] Welcome/greeting + streak/progress widget
+- [x] Enrolled courses section
+- [x] Recommended hobbies/quizzes widget (links to Phase 6 page)
+- [x] Quick-access cards to Buddy Rooms & Subscriptions
+- [x] Responsive polish pass
 
 ---
 
