@@ -103,11 +103,11 @@ FRONTROW is a hobby learning platform where users can explore, learn, and connec
 - Add "similar hobby" matching visual cue (e.g. tags showing shared interests)
 
 **Checkboxes:**
-- [ ] Buddy Rooms list page built
-- [ ] Hobby filter/tabs on list page
-- [ ] Chat room UI (messages + members + input) built
-- [ ] Dummy message send interaction (appends to UI state)
-- [ ] Visual polish pass
+- [x] Buddy Rooms list page built
+- [x] Hobby filter/tabs on list page
+- [x] Chat room UI (messages + members + input) built
+- [x] Dummy message send interaction (appends to UI state)
+- [x] Visual polish pass
 
 ---
 
