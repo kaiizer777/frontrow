@@ -91,60 +91,70 @@ function QuizzesContent() {
       />
 
       {/* "How It Works" 3-Step Visual Engine Section */}
-      <div className="rounded-3xl bg-gradient-to-br from-slate-950 via-slate-900 to-teal-950 text-white p-6 sm:p-8 md:p-10 border border-slate-800/80 shadow-xl relative overflow-hidden">
+      <div className="rounded-2xl bg-gradient-to-br from-primary-600 via-primary-500 to-amber-600 text-white p-6 sm:p-8 md:p-10 border-t border-white/20 shadow-[0_12px_32px_rgba(255,90,54,0.22)] relative overflow-hidden">
         {/* Ambient glow effects */}
-        <div className="absolute right-0 top-0 w-80 h-80 rounded-full bg-teal-500/10 blur-3xl pointer-events-none" />
-        <div className="absolute left-1/4 bottom-0 w-64 h-64 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none" />
+        <div className="absolute right-0 top-0 w-80 h-80 rounded-full bg-white/15 blur-3xl pointer-events-none" />
+        <div className="absolute left-1/4 bottom-0 w-64 h-64 rounded-full bg-amber-400/20 blur-3xl pointer-events-none" />
+        <div className="absolute -left-10 -bottom-10 w-64 h-64 rounded-full bg-white/10 blur-3xl pointer-events-none" />
+
+        {/* Subtle background grid pattern */}
+        <div
+          className="absolute inset-0 opacity-[0.07] pointer-events-none"
+          style={{
+            backgroundImage: "radial-gradient(#ffffff 1px, transparent 1px)",
+            backgroundSize: "24px 24px",
+          }}
+        />
 
         <div className="relative z-10 space-y-7">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-6 border-b border-slate-800">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-6 border-b border-white/20">
             <div>
-              <span className="text-xs font-bold text-teal-400 uppercase tracking-wider">
+              <span className="text-xs font-bold text-amber-200 uppercase tracking-wider">
                 Scientific Craft Affinity
               </span>
               <h3 className="text-xl sm:text-2xl md:text-3xl font-bold font-display text-white mt-1">
                 How FRONTROW Discovery Works
               </h3>
             </div>
-            <Badge variant="secondary" size="sm" className="bg-teal-500/20 text-teal-300 border-teal-400/30 w-fit">
-              <Sparkles className="h-3.5 w-3.5 mr-1" />
-              Smart Match Engine
-            </Badge>
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 border border-white/25 backdrop-blur-md text-xs font-semibold text-white shadow-2xs w-fit">
+              <Sparkles className="h-3.5 w-3.5 text-amber-200 animate-pulse mr-1" />
+              <span>Smart Match Engine</span>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
-            <div className="p-6 rounded-2xl bg-slate-850/80 border border-slate-750/70 space-y-3 relative group hover:border-teal-500/50 transition-all">
-              <div className="h-11 w-11 rounded-xl bg-teal-500/20 text-teal-300 flex items-center justify-center font-bold font-display text-base border border-teal-400/30 shadow-xs">
+            <div className="p-6 rounded-2xl bg-white/15 border border-white/25 backdrop-blur-md space-y-3 relative group hover:bg-white/20 hover:border-white/40 transition-all shadow-2xs">
+              <div className="h-11 w-11 rounded-xl bg-white/20 text-white flex items-center justify-center font-bold font-display text-base border border-white/30 shadow-xs">
                 01
               </div>
               <h4 className="text-base font-bold text-white">
                 Intuitive Vibe Calibration
               </h4>
-              <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
+              <p className="text-xs sm:text-sm text-white/90 leading-relaxed font-normal">
                 4 prompt scenarios identify whether tactile ceramics, soulful chords, or visual framing sparks your natural focus and flow.
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-slate-850/80 border border-slate-750/70 space-y-3 relative group hover:border-emerald-500/50 transition-all">
-              <div className="h-11 w-11 rounded-xl bg-emerald-500/20 text-emerald-300 flex items-center justify-center font-bold font-display text-base border border-emerald-400/30 shadow-xs">
+            <div className="p-6 rounded-2xl bg-white/15 border border-white/25 backdrop-blur-md space-y-3 relative group hover:bg-white/20 hover:border-white/40 transition-all shadow-2xs">
+              <div className="h-11 w-11 rounded-xl bg-white/20 text-white flex items-center justify-center font-bold font-display text-base border border-white/30 shadow-xs">
                 02
               </div>
               <h4 className="text-base font-bold text-white">
                 Friction-Free Starter Pack
               </h4>
-              <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
+              <p className="text-xs sm:text-sm text-white/90 leading-relaxed font-normal">
                 Receive an instant gear blueprint, bite-sized starter masterclass, and beginner-safe practice drills tailored to your schedule.
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-slate-850/80 border border-slate-750/70 space-y-3 relative group hover:border-amber-500/50 transition-all">
-              <div className="h-11 w-11 rounded-xl bg-amber-500/20 text-amber-300 flex items-center justify-center font-bold font-display text-base border border-amber-400/30 shadow-xs">
+            <div className="p-6 rounded-2xl bg-white/15 border border-white/25 backdrop-blur-md space-y-3 relative group hover:bg-white/20 hover:border-white/40 transition-all shadow-2xs">
+              <div className="h-11 w-11 rounded-xl bg-white/20 text-white flex items-center justify-center font-bold font-display text-base border border-white/30 shadow-xs">
                 03
               </div>
               <h4 className="text-base font-bold text-white">
                 Live Peer Accountability
               </h4>
-              <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
+              <p className="text-xs sm:text-sm text-white/90 leading-relaxed font-normal">
                 Jump straight into active hobby lounges to share daily progress and jam with creators at your exact skill level.
               </p>
             </div>
