@@ -87,11 +87,11 @@ FRONTROW is a hobby learning platform where users can explore, learn, and connec
 - Highlight recommended/popular plan visually
 
 **Checkboxes:**
-- [ ] Subscription page route created
-- [ ] Pricing tier cards built
-- [ ] Mentor list/grid with dummy mentors
-- [ ] Book session button + dummy confirmation modal
-- [ ] Visual polish (highlight best plan, hover states)
+- [x] Subscription page route created
+- [x] Pricing tier cards built
+- [x] Mentor list/grid with dummy mentors
+- [x] Book session button + dummy confirmation modal
+- [x] Visual polish (highlight best plan, hover states)
 
 ---
 
