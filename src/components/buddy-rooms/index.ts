@@ -1,3 +1,4 @@
+export * from "./CompactRoomBar";
 export * from "./RoomFilters";
 export * from "./RoomListSidebar";
 export * from "./MessageBubble";
