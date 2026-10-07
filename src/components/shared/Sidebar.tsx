@@ -74,24 +74,38 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
 
       <aside
         className={cn(
-          "fixed top-16 bottom-0 left-0 z-40 w-64 border-r border-slate-200/80 bg-white/95 backdrop-blur-md flex flex-col justify-between py-5 px-3.5 transition-transform duration-200 ease-in-out md:translate-x-0 overflow-y-auto",
+          "fixed top-0 bottom-0 left-0 z-40 w-64 border-r border-slate-200/80 bg-white flex flex-col justify-between transition-transform duration-200 ease-in-out md:translate-x-0 overflow-y-auto",
           isOpen ? "translate-x-0" : "-translate-x-full"
         )}
       >
-        <div className="space-y-6">
-          {/* Mobile close button */}
-          <div className="flex md:hidden items-center justify-between px-2 pb-2 border-b border-slate-100">
-            <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
-              Navigation
-            </span>
-            <button
-              onClick={onClose}
-              className="p-1 text-slate-500 hover:text-slate-800 rounded-lg hover:bg-slate-100"
-            >
-              <X className="h-4 w-4" />
-            </button>
-          </div>
+        {/* Top: Brand Header directly above sidebar */}
+        <div className="sticky top-0 z-10 h-16 shrink-0 px-4 flex items-center justify-between border-b border-slate-200/80 bg-white">
+          <Link href="/" onClick={onClose} className="flex items-center gap-2.5 group">
+            <div className="h-9 w-9 rounded-xl bg-gradient-to-tr from-primary-600 to-primary-400 flex items-center justify-center text-white font-display font-extrabold text-base shadow-[0_2px_6px_rgba(240,68,30,0.3)] border-t border-white/30 group-hover:scale-105 transition-transform">
+              FR
+            </div>
+            <div className="flex flex-col">
+              <span className="font-display font-bold text-lg leading-tight tracking-tight text-slate-900 group-hover:text-primary-600 transition-colors">
+                FRONTROW
+              </span>
+              <span className="text-[10px] font-semibold text-slate-500 tracking-wider uppercase">
+                Hobby Learning Hub
+              </span>
+            </div>
+          </Link>
 
+          <button
+            type="button"
+            onClick={onClose}
+            className="md:hidden p-1.5 text-slate-500 hover:text-slate-800 rounded-lg hover:bg-slate-100 transition-colors"
+            aria-label="Close navigation"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        </div>
+
+        {/* Scrollable Navigation & Hobby Circles */}
+        <div className="p-3.5 space-y-6 flex-1">
           {/* Core Navigation */}
           <div>
             <div className="px-3 pb-2 text-[11px] font-bold text-slate-600 uppercase tracking-wider">
@@ -163,7 +177,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
         </div>
 
         {/* Pro Mentorship Upgrade Callout */}
-        <div className="pt-4 border-t border-slate-100">
+        <div className="p-3.5 border-t border-slate-100 shrink-0">
           <div className="rounded-xl p-3.5 bg-gradient-to-br from-primary-50/70 via-white to-amber-50/50 border border-primary-200/70 shadow-2xs space-y-2.5">
             <div className="flex items-center gap-2">
               <div className="h-6 w-6 rounded-lg bg-primary-500/10 flex items-center justify-center text-primary-600">

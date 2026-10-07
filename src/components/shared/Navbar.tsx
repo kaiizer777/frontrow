@@ -7,49 +7,39 @@ import {
   Search,
   Bell,
   Flame,
-  Sparkles,
   Menu,
-  X,
-  Compass,
 } from "lucide-react";
 import { Avatar } from "@/components/ui/Avatar";
-import { Badge } from "@/components/ui/Badge";
-import { Button } from "@/components/ui/Button";
 
 export function Navbar({ onMenuToggle }: { onMenuToggle?: () => void }) {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-slate-200/80">
-      <div className="flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        {/* Left: Mobile trigger & Brand */}
-        <div className="flex items-center gap-3 md:gap-6">
+    <header className="sticky top-0 z-30 w-full bg-white/95 backdrop-blur-md border-b border-slate-200/80 md:pl-64 transition-all">
+      <div className="flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8 w-full max-w-7xl mx-auto">
+        {/* Mobile Left: Menu toggle & Brand */}
+        <div className="flex items-center gap-3 md:hidden">
           <button
             type="button"
             onClick={onMenuToggle}
-            className="md:hidden p-2 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition-colors"
+            className="p-2 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition-colors"
             aria-label="Toggle navigation"
           >
             <Menu className="h-5 w-5" />
           </button>
 
-          <Link href="/" className="flex items-center gap-2.5 group">
-            <div className="h-9 w-9 rounded-xl bg-gradient-to-tr from-primary-600 to-primary-400 flex items-center justify-center text-white font-display font-extrabold text-base shadow-[0_2px_6px_rgba(240,68,30,0.3)] border-t border-white/30 group-hover:scale-105 transition-transform">
+          <Link href="/" className="flex items-center gap-2">
+            <div className="h-8 w-8 rounded-lg bg-gradient-to-tr from-primary-600 to-primary-400 flex items-center justify-center text-white font-display font-extrabold text-sm shadow-2xs">
               FR
             </div>
-            <div className="flex flex-col">
-              <span className="font-display font-bold text-lg leading-tight tracking-tight text-slate-900 group-hover:text-primary-600 transition-colors">
-                FRONTROW
-              </span>
-              <span className="text-[10px] font-semibold text-slate-600 tracking-wider uppercase">
-                Hobby Learning Hub
-              </span>
-            </div>
+            <span className="font-display font-bold text-base tracking-tight text-slate-900">
+              FRONTROW
+            </span>
           </Link>
         </div>
 
-        {/* Center: Search Bar */}
-        <div className="hidden md:flex items-center flex-1 max-w-md mx-8">
+        {/* Desktop Left: Global Search Bar */}
+        <div className="hidden md:flex items-center flex-1 max-w-lg">
           <div className="relative w-full">
             <Search className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
             <input
@@ -64,18 +54,18 @@ export function Navbar({ onMenuToggle }: { onMenuToggle?: () => void }) {
           </div>
         </div>
 
-        {/* Right: User status, streak & actions */}
+        {/* Right: Streak, Notification Bell & User Profile */}
         <div className="flex items-center gap-3">
           {/* Streak Indicator */}
           <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-50 border border-amber-200/80 text-amber-900 text-xs font-semibold shadow-2xs">
             <Flame className="h-3.5 w-3.5 text-amber-500 fill-amber-500" />
-            <span>7 Day Streak</span>
+            <span>14 Day Streak</span>
           </div>
 
           {/* Notifications */}
           <button
             type="button"
-            className="relative p-2 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition-colors"
+            className="relative p-2 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer"
             aria-label="Notifications"
           >
             <Bell className="h-4 w-4" />
@@ -98,7 +88,7 @@ export function Navbar({ onMenuToggle }: { onMenuToggle?: () => void }) {
                 Saif B.
               </span>
               <span className="text-[10px] font-medium text-teal-600">
-                Level 4 • Explorer
+                Top 5% • Explorer
               </span>
             </div>
           </Link>
