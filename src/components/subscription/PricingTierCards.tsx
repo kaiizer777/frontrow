@@ -21,8 +21,8 @@ export function PricingTierCards({
   return (
     <div className="space-y-6">
       {/* Section Header */}
-      <div className="text-center max-w-2xl mx-auto space-y-3">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 font-display">
+      <div className="text-center max-w-4xl mx-auto space-y-2.5">
+        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-slate-900 font-display tracking-tight sm:whitespace-nowrap">
           Transparent, Flexible Plans for Every Stage
         </h2>
         <p className="text-xs sm:text-sm text-slate-600 max-w-xl mx-auto leading-relaxed">
