@@ -95,23 +95,23 @@ export function PricingTierCards({
               {/* Plan Header */}
               <div>
                 <div className="flex items-center justify-between gap-2">
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 min-w-0">
                     {isMaster ? (
-                      <div className="h-7 w-7 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center">
-                        <Crown className="h-4 w-4" />
+                      <div className="h-6 w-6 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center shrink-0">
+                        <Crown className="h-3.5 w-3.5" />
                       </div>
                     ) : isPro ? (
-                      <div className="h-7 w-7 rounded-lg bg-primary-100 text-primary-700 flex items-center justify-center">
-                        <Zap className="h-4 w-4" />
+                      <div className="h-6 w-6 rounded-lg bg-primary-100 text-primary-700 flex items-center justify-center shrink-0">
+                        <Zap className="h-3.5 w-3.5" />
                       </div>
                     ) : null}
-                    <h3 className="text-lg sm:text-xl font-bold text-slate-900 font-display">
+                    <h3 className="text-base sm:text-[17px] font-bold text-slate-900 font-display whitespace-nowrap tracking-tight">
                       {plan.name}
                     </h3>
                   </div>
 
                   {plan.badge && !isPro && (
-                    <Badge variant="secondary" size="sm">
+                    <Badge variant="secondary" size="sm" className="shrink-0">
                       {plan.badge}
                     </Badge>
                   )}
