@@ -80,15 +80,18 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
       >
         {/* Top: Brand Header directly above sidebar */}
         <div className="sticky top-0 z-10 h-16 shrink-0 px-4 flex items-center justify-between border-b border-slate-200/80 bg-white">
-          <Link href="/" onClick={onClose} className="flex items-center gap-2.5 group">
-            <div className="h-9 w-9 rounded-xl bg-gradient-to-tr from-primary-600 to-primary-400 flex items-center justify-center text-white font-display font-extrabold text-base shadow-[0_2px_6px_rgba(240,68,30,0.3)] border-t border-white/30 group-hover:scale-105 transition-transform">
-              FR
+          <Link href="/" onClick={onClose} className="flex items-center gap-2.5 select-none">
+            <div className="relative h-9 w-9 rounded-xl bg-gradient-to-br from-primary-500 via-[#FF5A36] to-[#E0401E] flex items-center justify-center text-white font-display font-black text-sm tracking-tight shadow-[0_3px_10px_rgba(255,90,54,0.3)] border-t border-white/35 ring-1 ring-black/5">
+              <span className="drop-shadow-xs">FR</span>
             </div>
             <div className="flex flex-col">
-              <span className="font-display font-bold text-lg leading-tight tracking-tight text-slate-900 group-hover:text-primary-600 transition-colors">
-                FRONTROW
-              </span>
-              <span className="text-[10px] font-semibold text-slate-500 tracking-wider uppercase">
+              <div className="flex items-center gap-1">
+                <span className="font-display font-black text-[17px] leading-tight tracking-tight text-slate-950">
+                  FRONTROW
+                </span>
+                <span className="h-1.5 w-1.5 rounded-full bg-primary-500 animate-pulse" />
+              </div>
+              <span className="text-[9.5px] font-bold text-slate-500 tracking-[0.14em] uppercase leading-none mt-0.5">
                 Hobby Learning Hub
               </span>
             </div>

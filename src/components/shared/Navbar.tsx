@@ -28,11 +28,11 @@ export function Navbar({ onMenuToggle }: { onMenuToggle?: () => void }) {
             <Menu className="h-5 w-5" />
           </button>
 
-          <Link href="/" className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-lg bg-gradient-to-tr from-primary-600 to-primary-400 flex items-center justify-center text-white font-display font-extrabold text-sm shadow-2xs">
+          <Link href="/" className="flex items-center gap-2 select-none">
+            <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-primary-500 via-[#FF5A36] to-[#E0401E] flex items-center justify-center text-white font-display font-black text-xs shadow-2xs border-t border-white/30">
               FR
             </div>
-            <span className="font-display font-bold text-base tracking-tight text-slate-900">
+            <span className="font-display font-black text-base tracking-tight text-slate-950">
               FRONTROW
             </span>
           </Link>
