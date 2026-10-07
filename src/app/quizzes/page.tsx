@@ -10,7 +10,7 @@ import {
 } from "@/components/quizzes";
 import { quizzes } from "@/lib/dummyData/quizzes";
 import { Quiz } from "@/lib/dummyData/types";
-import { Sparkles, Compass, Lightbulb, Users, ArrowRight, CheckCircle2, Flame, HeartHandshake } from "lucide-react";
+import { Sparkles, Compass, Lightbulb, Users, ArrowRight, CheckCircle2, Flame, HeartHandshake, Zap, Target } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 
@@ -90,17 +90,19 @@ function QuizzesContent() {
         onResetFilters={handleResetFilters}
       />
 
-      {/* How Discovery Matching Works 3-Step Section */}
-      <div className="rounded-3xl bg-gradient-to-br from-slate-900 via-slate-850 to-teal-950 text-white p-6 sm:p-8 md:p-10 border border-slate-800/80 shadow-lg relative overflow-hidden">
-        <div className="absolute right-0 top-0 w-72 h-72 rounded-full bg-teal-500/10 blur-3xl pointer-events-none" />
+      {/* "How It Works" 3-Step Visual Engine Section */}
+      <div className="rounded-3xl bg-gradient-to-br from-slate-950 via-slate-900 to-teal-950 text-white p-6 sm:p-8 md:p-10 border border-slate-800/80 shadow-xl relative overflow-hidden">
+        {/* Ambient glow effects */}
+        <div className="absolute right-0 top-0 w-80 h-80 rounded-full bg-teal-500/10 blur-3xl pointer-events-none" />
+        <div className="absolute left-1/4 bottom-0 w-64 h-64 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none" />
 
-        <div className="relative z-10 space-y-6">
+        <div className="relative z-10 space-y-7">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-6 border-b border-slate-800">
             <div>
               <span className="text-xs font-bold text-teal-400 uppercase tracking-wider">
                 Scientific Craft Affinity
               </span>
-              <h3 className="text-xl sm:text-2xl font-bold font-display text-white mt-1">
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold font-display text-white mt-1">
                 How FRONTROW Discovery Works
               </h3>
             </div>
@@ -111,39 +113,39 @@ function QuizzesContent() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
-            <div className="p-5 rounded-2xl bg-slate-800/60 border border-slate-700/60 space-y-2.5">
-              <div className="h-10 w-10 rounded-xl bg-teal-500/20 text-teal-300 flex items-center justify-center font-bold font-display text-base border border-teal-400/30">
+            <div className="p-6 rounded-2xl bg-slate-850/80 border border-slate-750/70 space-y-3 relative group hover:border-teal-500/50 transition-all">
+              <div className="h-11 w-11 rounded-xl bg-teal-500/20 text-teal-300 flex items-center justify-center font-bold font-display text-base border border-teal-400/30 shadow-xs">
                 01
               </div>
-              <h4 className="text-sm sm:text-base font-bold text-white">
+              <h4 className="text-base font-bold text-white">
                 Intuitive Vibe Calibration
               </h4>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                4 prompt questions identify whether tactile ceramics, auditory chords, or visual framing sparks your focus.
+              <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
+                4 prompt scenarios identify whether tactile ceramics, soulful chords, or visual framing sparks your natural focus and flow.
               </p>
             </div>
 
-            <div className="p-5 rounded-2xl bg-slate-800/60 border border-slate-700/60 space-y-2.5">
-              <div className="h-10 w-10 rounded-xl bg-emerald-500/20 text-emerald-300 flex items-center justify-center font-bold font-display text-base border border-emerald-400/30">
+            <div className="p-6 rounded-2xl bg-slate-850/80 border border-slate-750/70 space-y-3 relative group hover:border-emerald-500/50 transition-all">
+              <div className="h-11 w-11 rounded-xl bg-emerald-500/20 text-emerald-300 flex items-center justify-center font-bold font-display text-base border border-emerald-400/30 shadow-xs">
                 02
               </div>
-              <h4 className="text-sm sm:text-base font-bold text-white">
+              <h4 className="text-base font-bold text-white">
                 Friction-Free Starter Pack
               </h4>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Get an instant gear blueprint, bite-sized starter masterclass, and beginner-safe practice drills.
+              <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
+                Receive an instant gear blueprint, bite-sized starter masterclass, and beginner-safe practice drills tailored to your schedule.
               </p>
             </div>
 
-            <div className="p-5 rounded-2xl bg-slate-800/60 border border-slate-700/60 space-y-2.5">
-              <div className="h-10 w-10 rounded-xl bg-amber-500/20 text-amber-300 flex items-center justify-center font-bold font-display text-base border border-amber-400/30">
+            <div className="p-6 rounded-2xl bg-slate-850/80 border border-slate-750/70 space-y-3 relative group hover:border-amber-500/50 transition-all">
+              <div className="h-11 w-11 rounded-xl bg-amber-500/20 text-amber-300 flex items-center justify-center font-bold font-display text-base border border-amber-400/30 shadow-xs">
                 03
               </div>
-              <h4 className="text-sm sm:text-base font-bold text-white">
+              <h4 className="text-base font-bold text-white">
                 Live Peer Accountability
               </h4>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Jump straight into active hobby chat lounges to jam with creators at your exact skill level.
+              <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
+                Jump straight into active hobby lounges to share daily progress and jam with creators at your exact skill level.
               </p>
             </div>
           </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { X, ArrowLeft, ArrowRight, Sparkles, Trophy, HelpCircle } from "lucide-react";
+import { X, ArrowLeft, ArrowRight, Sparkles, HelpCircle } from "lucide-react";
 import { Quiz, QuizOption, QuizResultRecommendation } from "@/lib/dummyData/types";
 import { QuizQuestionView } from "./QuizQuestionView";
 import { QuizResultCard } from "./QuizResultCard";
@@ -85,7 +85,7 @@ export function QuizPlayerModal({
     };
     setSelectedAnswers(updatedAnswers);
 
-    // Auto-advance with subtle delay for smooth feedback
+    // Auto-advance with subtle delay for smooth dopamine feedback
     setTimeout(() => {
       if (currentStepIndex < totalQuestions - 1) {
         setCurrentStepIndex((prev) => prev + 1);
@@ -124,27 +124,27 @@ export function QuizPlayerModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 md:p-6 animate-fadeIn">
-      <div className="relative w-full max-w-3xl rounded-3xl bg-surface border border-slate-200/90 shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-2 sm:p-4 md:p-6 animate-fadeIn">
+      <div className="relative w-full max-w-3xl rounded-3xl bg-white border border-slate-200/90 shadow-2xl overflow-hidden flex flex-col max-h-[94vh] sm:max-h-[90vh]">
         {/* Modal Top Bar */}
-        <div className="sticky top-0 z-20 flex items-center justify-between px-5 py-4 bg-white/95 backdrop-blur-md border-b border-slate-100">
+        <div className="sticky top-0 z-20 flex items-center justify-between px-4 sm:px-6 py-3.5 sm:py-4 bg-white/95 backdrop-blur-md border-b border-slate-100">
           <div className="flex items-center gap-2.5 min-w-0">
-            <div className="h-8 w-8 rounded-xl bg-teal-50 border border-teal-200 flex items-center justify-center text-teal-600 shrink-0">
+            <div className="h-8 w-8 sm:h-9 sm:w-9 rounded-xl bg-teal-50 border border-teal-200/80 flex items-center justify-center text-teal-600 shrink-0">
               <Sparkles className="h-4 w-4" />
             </div>
             <div className="min-w-0">
               <h3 className="text-xs sm:text-sm font-bold text-slate-900 truncate">
                 {quiz.title}
               </h3>
-              <p className="text-[11px] text-slate-600 truncate">
-                {showResult ? "✨ Match Results Ready" : `${quiz.estimatedMinutes} min intuitive discovery`}
+              <p className="text-[11px] text-slate-500 truncate">
+                {showResult ? "✨ Match Profile Ready" : `${quiz.estimatedMinutes} min discovery lounge`}
               </p>
             </div>
           </div>
 
           <button
             onClick={onClose}
-            className="p-1.5 rounded-full text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors cursor-pointer"
+            className="p-2 rounded-xl text-slate-400 hover:text-slate-800 hover:bg-slate-100 transition-colors cursor-pointer"
             aria-label="Close quiz modal"
           >
             <X className="h-5 w-5" />
@@ -173,7 +173,7 @@ export function QuizPlayerModal({
 
         {/* Modal Bottom Bar (Wizard controls during question flow) */}
         {!showResult && (
-          <div className="sticky bottom-0 z-20 flex items-center justify-between px-5 py-3.5 bg-white/95 backdrop-blur-md border-t border-slate-100">
+          <div className="sticky bottom-0 z-20 flex items-center justify-between px-4 sm:px-6 py-3 sm:py-3.5 bg-white/95 backdrop-blur-md border-t border-slate-100">
             <Button
               variant="outline"
               size="sm"
@@ -185,7 +185,7 @@ export function QuizPlayerModal({
               Previous
             </Button>
 
-            <div className="flex items-center gap-1.5 text-xs text-slate-600 font-medium">
+            <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium">
               <span>Question {currentStepIndex + 1} of {totalQuestions}</span>
             </div>
 
@@ -195,7 +195,7 @@ export function QuizPlayerModal({
               onClick={handleNextStep}
               disabled={!currentSelectedOption}
               rightIcon={<ArrowRight className="h-3.5 w-3.5" />}
-              className="text-xs font-bold shadow-xs cursor-pointer"
+              className="text-xs font-bold shadow-xs cursor-pointer bg-teal-600 hover:bg-teal-500 text-white"
             >
               {currentStepIndex === totalQuestions - 1 ? "See My Match 🎉" : "Next Question"}
             </Button>
