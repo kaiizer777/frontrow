@@ -188,6 +188,7 @@ export interface Quiz {
   title: string;
   tagline: string;
   description: string;
+  category: 'Weekend DIY' | 'Music & Audio' | 'Visual Arts' | 'Craft & Tactile' | 'General';
   estimatedMinutes: number;
   coverImage: string;
   accentBadge: string;

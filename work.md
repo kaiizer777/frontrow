@@ -120,11 +120,11 @@ FRONTROW is a hobby learning platform where users can explore, learn, and connec
 - Keep it light/fun visually (progress bar, animated transitions between questions)
 
 **Checkboxes:**
-- [ ] Quiz listing page built
-- [ ] Quiz-taking flow (question/option/progress) built
-- [ ] Result screen with hobby suggestion built
-- [ ] Transitions/animations polish
-- [ ] Link result → back to Dashboard recommendation
+- [x] Quiz listing page built
+- [x] Quiz-taking flow (question/option/progress) built
+- [x] Result screen with hobby suggestion built
+- [x] Transitions/animations polish
+- [x] Link result → back to Dashboard recommendation
 
 ---
 
