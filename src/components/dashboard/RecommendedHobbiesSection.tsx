@@ -39,29 +39,29 @@ export function RecommendedHobbiesSection() {
   };
 
   return (
-    <div className="space-y-4">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <div className="space-y-0.5">
+    <div className="space-y-3.5 sm:space-y-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3">
+        <div className="space-y-0.5 min-w-0">
           <div className="flex items-center gap-2">
-            <h2 className="font-display text-xl sm:text-2xl font-bold text-slate-900">
+            <h2 className="font-display text-lg sm:text-2xl font-bold text-slate-900 truncate">
               Recommended For You
             </h2>
-            <Badge variant="amber" size="sm" dot={true}>
+            <Badge variant="amber" size="sm" dot={true} className="shrink-0 text-[10px] sm:text-xs">
               AI Curated
             </Badge>
           </div>
-          <p className="text-xs sm:text-sm text-slate-500">
+          <p className="text-xs sm:text-sm text-slate-500 line-clamp-1 sm:line-clamp-none">
             Handpicked creative workshops based on your neo-soul & visual art affinities
           </p>
         </div>
 
         {/* Category Filter Chips */}
-        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0">
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0 -mx-1 px-1 sm:mx-0 sm:px-0 scrollbar-none touch-pan-x">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
+              className={`px-3 py-1.5 sm:py-1 rounded-full text-xs font-semibold whitespace-nowrap transition-all cursor-pointer active:scale-95 touch-manipulation ${
                 selectedCategory === cat
                   ? "bg-primary-600 text-white shadow-xs font-bold"
                   : "bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900"
@@ -73,7 +73,7 @@ export function RecommendedHobbiesSection() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
         {filteredCourses.map((course) => {
           const isSaved = savedCourses.includes(course.id);
           const hobby = hobbies.find((h) => h.id === course.hobbyId);
@@ -82,11 +82,11 @@ export function RecommendedHobbiesSection() {
             <Card
               key={course.id}
               variant="interactive"
-              className="flex flex-col justify-between overflow-hidden border-slate-200/80 bg-white group hover:border-teal-300"
+              className="flex flex-col justify-between overflow-hidden border-slate-200/80 bg-white group hover:border-teal-300 active:scale-[0.99] transition-transform"
             >
               <div>
                 {/* Course Cover Image Banner */}
-                <div className="relative h-44 w-full overflow-hidden bg-slate-100">
+                <div className="relative h-40 sm:h-44 w-full overflow-hidden bg-slate-100">
                   <img
                     src={course.coverImage}
                     alt={course.title}
@@ -95,11 +95,11 @@ export function RecommendedHobbiesSection() {
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
 
                   {/* Top Badges */}
-                  <div className="absolute top-3 left-3 right-3 flex items-center justify-between">
+                  <div className="absolute top-2.5 sm:top-3 left-2.5 sm:left-3 right-2.5 sm:right-3 flex items-center justify-between">
                     <Badge
                       variant="secondary"
                       size="sm"
-                      className="backdrop-blur-md bg-teal-800/90 text-white font-bold border-none shadow-xs"
+                      className="backdrop-blur-md bg-teal-800/90 text-white font-bold border-none shadow-xs text-[10px] sm:text-xs"
                     >
                       {course.level}
                     </Badge>
@@ -110,7 +110,7 @@ export function RecommendedHobbiesSection() {
                         e.preventDefault();
                         toggleBookmark(course.id);
                       }}
-                      className="p-1.5 rounded-full bg-slate-900/60 backdrop-blur-md text-white hover:bg-slate-900/90 transition-colors cursor-pointer"
+                      className="p-1.5 rounded-full bg-slate-900/60 backdrop-blur-md text-white hover:bg-slate-900/90 active:scale-90 transition-all cursor-pointer"
                       title="Bookmark course"
                     >
                       <Bookmark
@@ -122,22 +122,22 @@ export function RecommendedHobbiesSection() {
                   </div>
 
                   {/* Bottom Stats Overlay */}
-                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white text-xs font-medium">
-                    <span className="flex items-center gap-1 text-amber-300 font-bold">
-                      <Star className="h-3.5 w-3.5 fill-amber-300" />
+                  <div className="absolute bottom-2.5 sm:bottom-3 left-2.5 sm:left-3 right-2.5 sm:right-3 flex items-center justify-between text-white text-xs font-medium">
+                    <span className="flex items-center gap-1 text-amber-300 font-bold text-[11px] sm:text-xs">
+                      <Star className="h-3.5 w-3.5 fill-amber-300 shrink-0" />
                       {course.rating.toFixed(2)} ({course.reviewCount})
                     </span>
-                    <span className="flex items-center gap-1 text-slate-200 font-semibold">
-                      <Users className="h-3.5 w-3.5" />
+                    <span className="flex items-center gap-1 text-slate-200 font-semibold text-[10.5px] sm:text-[11px]">
+                      <Users className="h-3.5 w-3.5 shrink-0" />
                       {course.studentCount.toLocaleString()} learners
                     </span>
                   </div>
                 </div>
 
                 {/* Card Content */}
-                <CardContent className="p-4 space-y-3">
+                <CardContent className="p-3.5 sm:p-4 space-y-2.5 sm:space-y-3">
                   <div>
-                    <span className="text-[11px] font-extrabold text-teal-700 uppercase tracking-wider">
+                    <span className="text-[10.5px] sm:text-[11px] font-extrabold text-teal-700 uppercase tracking-wider">
                       {course.hobbyName}
                     </span>
                     <h3 className="font-display text-base font-bold text-slate-900 group-hover:text-teal-700 transition-colors line-clamp-1 mt-0.5">
@@ -149,11 +149,11 @@ export function RecommendedHobbiesSection() {
                   </div>
 
                   {/* Course Tags */}
-                  <div className="flex flex-wrap gap-1.5 pt-1">
+                  <div className="flex flex-wrap gap-1.5 pt-0.5">
                     {course.tags.slice(0, 3).map((tag) => (
                       <span
                         key={tag}
-                        className="px-2 py-0.5 rounded-md bg-slate-100 text-[11px] font-medium text-slate-600"
+                        className="px-2 py-0.5 rounded-md bg-slate-100 text-[10.5px] sm:text-[11px] font-medium text-slate-600"
                       >
                         #{tag}
                       </span>
@@ -163,9 +163,9 @@ export function RecommendedHobbiesSection() {
               </div>
 
               {/* Card Footer: Instructor & CTA */}
-              <CardFooter className="p-4 pt-0 border-t border-slate-100 flex items-center justify-between gap-2 mt-2">
-                <div className="flex items-center gap-2">
-                  <span className="text-xs font-semibold text-slate-600">
+              <CardFooter className="p-3.5 sm:p-4 pt-0 border-t border-slate-100 flex items-center justify-between gap-2 mt-2">
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="text-xs font-semibold text-slate-600 truncate">
                     By <strong className="text-slate-900 font-bold">{course.instructor.name}</strong>
                   </span>
                 </div>
@@ -173,7 +173,7 @@ export function RecommendedHobbiesSection() {
                 <Button
                   variant="outline"
                   size="sm"
-                  className="font-bold text-xs text-teal-700 hover:text-teal-800 hover:bg-teal-50 border-teal-200"
+                  className="font-bold text-xs text-teal-700 hover:text-teal-800 hover:bg-teal-50 border-teal-200 shrink-0 active:scale-95 transition-transform"
                   rightIcon={<ArrowRight className="h-3 w-3" />}
                 >
                   Explore

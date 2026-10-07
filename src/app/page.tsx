@@ -13,14 +13,14 @@ import {
 export default function HomePage() {
   return (
     <AppShell>
-      <div className="space-y-8 pb-12">
+      <div className="space-y-6 sm:space-y-8 pb-12">
         {/* Personalized Welcome Banner & Quick Action Hero */}
         <WelcomeHero />
 
         {/* Dashboard Core Layout Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
           {/* Main Content Flow: Streaks, Active Courses, Recommendations (8 cols on desktop) */}
-          <div className="lg:col-span-8 space-y-8 min-w-0">
+          <div className="lg:col-span-8 space-y-6 sm:space-y-8 min-w-0">
             {/* Streak & Weekly Practice Momentum Widget */}
             <StreakActivityWidget />
 
@@ -32,7 +32,7 @@ export default function HomePage() {
           </div>
 
           {/* Right Action & Live Community Column (4 cols on desktop) */}
-          <div className="lg:col-span-4 space-y-6">
+          <div className="lg:col-span-4 space-y-5 sm:space-y-6">
             {/* Active Real-Time Buddy Rooms */}
             <ActiveBuddyRoomsWidget />
 

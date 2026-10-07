@@ -11,31 +11,31 @@ export function QuizBannerWidget() {
   const featuredQuiz = quizzes[0];
 
   return (
-    <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-teal-900 via-teal-800 to-slate-900 text-white p-5 sm:p-6 shadow-md border border-teal-700/50">
+    <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-teal-900 via-teal-800 to-slate-900 text-white p-4 sm:p-5 lg:p-6 shadow-md border border-teal-700/50">
       {/* Decorative ambient radial glows */}
       <div className="absolute right-0 top-0 -bottom-10 w-64 bg-gradient-to-l from-teal-400/20 to-transparent pointer-events-none rounded-full blur-2xl" />
       <div className="absolute -left-12 -top-12 w-40 h-40 bg-primary-500/20 rounded-full blur-2xl pointer-events-none" />
 
-      <div className="relative z-10 flex flex-col justify-between h-full space-y-4">
+      <div className="relative z-10 flex flex-col justify-between h-full space-y-3.5 sm:space-y-4">
         <div className="space-y-2.5">
           <div className="flex items-center justify-between">
             <Badge
               variant="secondary"
               size="sm"
-              className="bg-teal-500/20 text-teal-200 border-teal-400/30 backdrop-blur-xs font-bold"
+              className="bg-teal-500/20 text-teal-200 border-teal-400/30 backdrop-blur-xs font-bold text-[10px] sm:text-xs"
             >
-              <Sparkles className="h-3 w-3 text-teal-300 mr-1" />
+              <Sparkles className="h-3 w-3 text-teal-300 mr-1 shrink-0" />
               Creative Discovery
             </Badge>
 
             <div className="flex items-center gap-1 text-[11px] text-teal-200 font-medium">
-              <Clock className="h-3.5 w-3.5 text-teal-300" />
+              <Clock className="h-3.5 w-3.5 text-teal-300 shrink-0" />
               <span>{featuredQuiz.estimatedMinutes} mins</span>
             </div>
           </div>
 
           <div>
-            <h3 className="font-display text-lg font-bold text-white leading-snug">
+            <h3 className="font-display text-base sm:text-lg font-bold text-white leading-snug">
               {featuredQuiz.title}
             </h3>
             <p className="text-xs text-teal-100/85 line-clamp-2 mt-1 leading-relaxed">
@@ -43,10 +43,10 @@ export function QuizBannerWidget() {
             </p>
           </div>
 
-          <div className="flex items-center gap-3 text-[11px] text-teal-200/90 pt-0.5">
+          <div className="flex items-center gap-2 sm:gap-3 text-[10.5px] sm:text-[11px] text-teal-200/90 pt-0.5 flex-wrap">
             <span className="flex items-center gap-1 font-semibold">
-              <Users className="h-3 w-3 text-teal-300" />
-              {featuredQuiz.participantsCount.toLocaleString()}+ Creatives Tested
+              <Users className="h-3 w-3 text-teal-300 shrink-0" />
+              {featuredQuiz.participantsCount.toLocaleString()}+ Tested
             </span>
             <span>•</span>
             <span className="text-amber-300 font-bold">96% High Match</span>
@@ -57,7 +57,7 @@ export function QuizBannerWidget() {
           <Button
             variant="secondary"
             size="sm"
-            className="w-full justify-between bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold border-none shadow-xs text-xs group"
+            className="w-full justify-between bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold border-none shadow-xs text-xs group active:scale-[0.98] transition-transform"
             rightIcon={<ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />}
           >
             <span>Take 3-Min Quiz</span>
