@@ -4,7 +4,6 @@ import * as React from "react";
 import { Check, Sparkles, Zap, Crown, ArrowRight } from "lucide-react";
 import { subscriptionPlans } from "@/lib/dummyData/subscriptionPlans";
 import { SubscriptionPlan } from "@/lib/dummyData/types";
-import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 
 interface PricingTierCardsProps {
@@ -95,26 +94,20 @@ export function PricingTierCards({
               {/* Plan Header */}
               <div>
                 <div className="flex items-center justify-between gap-2">
-                  <div className="flex items-center gap-2 min-w-0">
+                  <div className="flex items-center gap-2">
                     {isMaster ? (
-                      <div className="h-6 w-6 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center shrink-0">
-                        <Crown className="h-3.5 w-3.5" />
+                      <div className="h-7 w-7 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center shrink-0">
+                        <Crown className="h-4 w-4" />
                       </div>
                     ) : isPro ? (
-                      <div className="h-6 w-6 rounded-lg bg-primary-100 text-primary-700 flex items-center justify-center shrink-0">
-                        <Zap className="h-3.5 w-3.5" />
+                      <div className="h-7 w-7 rounded-lg bg-primary-100 text-primary-700 flex items-center justify-center shrink-0">
+                        <Zap className="h-4 w-4" />
                       </div>
                     ) : null}
-                    <h3 className="text-base sm:text-[17px] font-bold text-slate-900 font-display whitespace-nowrap tracking-tight">
+                    <h3 className="text-base sm:text-lg font-bold text-slate-900 font-display whitespace-nowrap">
                       {plan.name}
                     </h3>
                   </div>
-
-                  {plan.badge && !isPro && (
-                    <Badge variant="secondary" size="sm" className="shrink-0">
-                      {plan.badge}
-                    </Badge>
-                  )}
                 </div>
 
                 <p className="text-xs text-slate-600 mt-2 min-h-[36px] leading-relaxed">
