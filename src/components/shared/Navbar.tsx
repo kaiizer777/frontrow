@@ -18,17 +18,8 @@ export function Navbar({ onMenuToggle }: { onMenuToggle?: () => void }) {
   return (
     <header className="sticky top-0 z-30 w-full bg-white/95 backdrop-blur-md border-b border-slate-200/80 md:pl-64 transition-all">
       <div className="flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8 w-full max-w-7xl mx-auto">
-        {/* Mobile Left: Menu toggle & Brand */}
-        <div className="flex items-center gap-3 md:hidden">
-          <button
-            type="button"
-            onClick={onMenuToggle}
-            className="p-2 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition-colors"
-            aria-label="Toggle navigation"
-          >
-            <Menu className="h-5 w-5" />
-          </button>
-
+        {/* Mobile Left: Brand Logo */}
+        <div className="flex items-center md:hidden">
           <Link href="/" className="block">
             <FrontrowLogo size="sm" />
           </Link>
@@ -50,18 +41,18 @@ export function Navbar({ onMenuToggle }: { onMenuToggle?: () => void }) {
           </div>
         </div>
 
-        {/* Right: Streak, Notification Bell & User Profile */}
-        <div className="flex items-center gap-3">
+        {/* Right: Streak, Notification Bell, User Profile & Mobile Hamburger Menu */}
+        <div className="flex items-center gap-2 sm:gap-3">
           {/* Streak Indicator */}
           <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-50 border border-amber-200/80 text-amber-900 text-xs font-semibold shadow-2xs">
             <Flame className="h-3.5 w-3.5 text-amber-500 fill-amber-500" />
             <span>14 Day Streak</span>
           </div>
 
-          {/* Notifications */}
+          {/* Notifications (hidden on mobile phone view) */}
           <button
             type="button"
-            className="relative p-2 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer"
+            className="hidden md:flex relative p-2 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer"
             aria-label="Notifications"
           >
             <Bell className="h-4 w-4" />
@@ -88,6 +79,16 @@ export function Navbar({ onMenuToggle }: { onMenuToggle?: () => void }) {
               </span>
             </div>
           </Link>
+
+          {/* Mobile Right Corner: Hamburger Menu Toggle */}
+          <button
+            type="button"
+            onClick={onMenuToggle}
+            className="p-2 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition-colors md:hidden cursor-pointer"
+            aria-label="Toggle navigation"
+          >
+            <Menu className="h-5 w-5" />
+          </button>
         </div>
       </div>
     </header>
