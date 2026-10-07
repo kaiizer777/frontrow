@@ -4,6 +4,7 @@ import * as React from "react";
 import { Check, Sparkles, Zap, Crown, ArrowRight } from "lucide-react";
 import { subscriptionPlans } from "@/lib/dummyData/subscriptionPlans";
 import { SubscriptionPlan } from "@/lib/dummyData/types";
+import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 
 interface PricingTierCardsProps {
@@ -108,6 +109,12 @@ export function PricingTierCards({
                       {plan.name}
                     </h3>
                   </div>
+
+                  {plan.id === "plan-starter" && plan.badge && (
+                    <Badge variant="secondary" size="sm">
+                      {plan.badge}
+                    </Badge>
+                  )}
                 </div>
 
                 <p className="text-xs text-slate-600 mt-2 min-h-[36px] leading-relaxed">
