@@ -10,15 +10,12 @@ import {
   Hammer,
   Users2,
   Clock,
-  Sparkle,
   Radio,
-  ChevronRight,
   Flame,
 } from "lucide-react";
 import { BuddyRoom } from "@/lib/dummyData/types";
 import { currentUser } from "@/lib/dummyData/users";
 import { cn } from "@/lib/utils";
-import { Badge } from "@/components/ui/Badge";
 import { RoomFilters, RoomFilterState } from "./RoomFilters";
 
 interface RoomListSidebarProps {
@@ -28,13 +25,13 @@ interface RoomListSidebarProps {
   className?: string;
 }
 
-const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
-  Guitar: Guitar,
-  Coffee: Coffee,
-  Camera: Camera,
-  Sparkles: Sparkles,
-  Palette: Palette,
-  Hammer: Hammer,
+const ICON_MAP: Record<string, string> = {
+  Guitar: "🎸",
+  Coffee: "☕",
+  Camera: "📷",
+  Sparkles: "🏺",
+  Palette: "🎨",
+  Hammer: "🪵",
 };
 
 export function RoomListSidebar({
@@ -50,7 +47,6 @@ export function RoomListSidebar({
     sortBy: "recommended",
   });
 
-  // Calculate matching interests with current user
   const isInterestMatch = (room: BuddyRoom) => {
     return currentUser.interests.some(
       (interest) =>
@@ -60,40 +56,26 @@ export function RoomListSidebar({
     );
   };
 
-  // Filter and sort rooms
   const filteredRooms = React.useMemo(() => {
     return rooms
       .filter((room) => {
-        // Category filter
         if (filters.category !== "all" && room.hobbyId !== filters.category) {
           return false;
         }
-
-        // Live active now filter (e.g., > 15 online)
         if (filters.onlyActiveNow && room.onlineCount < 15) {
           return false;
         }
-
-        // Search query filter
         if (filters.searchQuery.trim()) {
           const q = filters.searchQuery.toLowerCase();
-          const matchesName = room.name.toLowerCase().includes(q);
-          const matchesHobby = room.hobbyName.toLowerCase().includes(q);
-          const matchesTags = room.tags.some((t) => t.toLowerCase().includes(q));
-          const matchesDesc = room.description.toLowerCase().includes(q);
-          return matchesName || matchesHobby || matchesTags || matchesDesc;
+          return (
+            room.name.toLowerCase().includes(q) ||
+            room.hobbyName.toLowerCase().includes(q) ||
+            room.tags.some((t) => t.toLowerCase().includes(q))
+          );
         }
-
         return true;
       })
       .sort((a, b) => {
-        if (filters.sortBy === "active") {
-          return b.onlineCount - a.onlineCount;
-        }
-        if (filters.sortBy === "members") {
-          return b.memberCount - a.memberCount;
-        }
-        // "recommended": prioritize user's interest matches first, then online count
         const aMatch = isInterestMatch(a) ? 1 : 0;
         const bMatch = isInterestMatch(b) ? 1 : 0;
         if (aMatch !== bMatch) return bMatch - aMatch;
@@ -101,48 +83,36 @@ export function RoomListSidebar({
       });
   }, [rooms, filters]);
 
-  const activeRoomsCount = rooms.filter((r) => r.onlineCount >= 15).length;
-
   return (
-    <div
-      className={cn(
-        "flex flex-col h-full bg-white border-r border-slate-200/80 select-none",
-        className
-      )}
-    >
+    <div className={cn("flex flex-col h-full select-none min-h-0", className)}>
       {/* Header & Filter Controls */}
-      <div className="p-3.5 sm:p-4 border-b border-slate-100 space-y-3 bg-gradient-to-b from-slate-50/50 to-white">
+      <div className="p-3 border-b border-slate-200/80 bg-white space-y-2.5 shrink-0">
         <div className="flex items-center justify-between">
-          <div>
-            <h2 className="text-sm font-bold text-slate-900 font-display flex items-center gap-2">
-              <span>Hobby Jam Rooms</span>
-              <span className="text-[11px] font-semibold text-primary-700 bg-primary-50 px-2 py-0.5 rounded-full border border-primary-200/50">
-                {filteredRooms.length} of {rooms.length}
-              </span>
-            </h2>
-            <p className="text-[11px] text-slate-500 mt-0.5">
-              Live peer studios, audio jams & feedback circles
-            </p>
-          </div>
+          <h2 className="text-xs font-bold text-slate-900 font-display flex items-center gap-1.5 uppercase tracking-wider">
+            <span>Buddy Jam Rooms</span>
+            <span className="text-[10px] font-bold text-primary-700 bg-primary-50 px-1.5 py-0.2 rounded-full border border-primary-200/60">
+              {filteredRooms.length}
+            </span>
+          </h2>
+          <span className="text-[10px] font-medium text-emerald-600 flex items-center gap-1">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            Live Circles
+          </span>
         </div>
 
         <RoomFilters
           filters={filters}
           onFilterChange={setFilters}
           totalRoomsCount={rooms.length}
-          activeRoomsCount={activeRoomsCount}
+          activeRoomsCount={rooms.filter((r) => r.onlineCount >= 15).length}
         />
       </div>
 
       {/* Rooms Scroll List */}
-      <div className="flex-1 overflow-y-auto p-2 sm:p-3 space-y-2 divide-y divide-transparent">
+      <div className="flex-1 overflow-y-auto p-2 space-y-1 min-h-0">
         {filteredRooms.length === 0 ? (
-          <div className="p-8 text-center space-y-2">
-            <div className="text-2xl">🔍</div>
-            <p className="text-xs font-semibold text-slate-700">No rooms found</p>
-            <p className="text-[11px] text-slate-400">
-              Try adjusting your search query or hobby filters.
-            </p>
+          <div className="p-6 text-center space-y-1 text-slate-400 text-xs">
+            <p className="font-semibold text-slate-600">No rooms match</p>
             <button
               type="button"
               onClick={() =>
@@ -153,103 +123,83 @@ export function RoomListSidebar({
                   sortBy: "recommended",
                 })
               }
-              className="text-xs font-bold text-primary-600 hover:text-primary-700 underline mt-2"
+              className="text-primary-600 underline text-xs font-semibold"
             >
-              Reset Filters
+              Reset filters
             </button>
           </div>
         ) : (
           filteredRooms.map((room) => {
             const isSelected = room.id === activeRoomId;
-            const IconComponent = ICON_MAP[room.icon] || Users2;
+            const iconEmoji = ICON_MAP[room.icon] || "💬";
             const matchesUserHobby = isInterestMatch(room);
 
             return (
-              <div
+              <button
                 key={room.id}
+                type="button"
                 onClick={() => onSelectRoom(room.id)}
                 className={cn(
-                  "group relative p-3 rounded-xl border transition-all cursor-pointer text-left",
+                  "w-full text-left p-2.5 rounded-xl transition-all relative border flex items-start gap-2.5 group cursor-pointer",
                   isSelected
-                    ? "bg-primary-50/70 border-primary-300 ring-2 ring-primary-500/20 shadow-xs"
-                    : "bg-white border-slate-200/70 hover:border-slate-300 hover:bg-slate-50/80 shadow-2xs"
+                    ? "bg-white border-primary-300 ring-1 ring-primary-500/20 shadow-xs"
+                    : "bg-transparent border-transparent hover:bg-white/80 hover:border-slate-200/80"
                 )}
               >
-                {/* Active selection bar indicator on left */}
+                {/* Active Indicator Bar */}
                 {isSelected && (
-                  <div className="absolute left-0 top-3 bottom-3 w-1 bg-primary-600 rounded-r-full" />
+                  <span className="absolute left-0 top-2 bottom-2 w-1 bg-primary-600 rounded-r-full" />
                 )}
 
-                <div className="flex items-start gap-3 pl-1">
-                  {/* Hobby Icon / Room Avatar */}
-                  <div
-                    className={cn(
-                      "h-10 w-10 rounded-xl flex items-center justify-center shrink-0 border transition-colors shadow-2xs",
-                      isSelected
-                        ? "bg-primary-600 text-white border-primary-600 shadow-primary-500/20"
-                        : "bg-slate-50 text-slate-700 border-slate-200 group-hover:bg-primary-50 group-hover:text-primary-600 group-hover:border-primary-200"
-                    )}
-                  >
-                    <IconComponent className="h-5 w-5" />
-                  </div>
-
-                  {/* Room Details */}
-                  <div className="flex-1 min-w-0 space-y-1">
-                    {/* Top Row: Title & Online count */}
-                    <div className="flex items-center justify-between gap-1">
-                      <h3
-                        className={cn(
-                          "text-xs font-bold truncate",
-                          isSelected ? "text-primary-950" : "text-slate-900 group-hover:text-primary-600"
-                        )}
-                      >
-                        {room.name}
-                      </h3>
-
-                      {/* Live Online Badge */}
-                      <div className="flex items-center gap-1 shrink-0">
-                        <span className="relative flex h-2 w-2">
-                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-                        </span>
-                        <span className="text-[10px] font-bold text-emerald-700">
-                          {room.onlineCount}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Second Row: Hobby Name + Similar Match Tag */}
-                    <div className="flex flex-wrap items-center gap-1.5 text-[10px]">
-                      <span className="font-semibold text-slate-500">
-                        {room.hobbyName}
-                      </span>
-                      {matchesUserHobby && (
-                        <span className="inline-flex items-center gap-0.5 px-1.5 py-0.2 rounded-full font-bold bg-amber-100/80 text-amber-800 border border-amber-200/60">
-                          <Flame className="h-2.5 w-2.5 text-amber-600" />
-                          Interest Match
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Third Row: Last message snippet */}
-                    <p className="text-[11px] text-slate-600 line-clamp-1 italic">
-                      &ldquo;{room.lastMessageSnippet}&rdquo;
-                    </p>
-
-                    {/* Bottom Metadata: Member count + Last message timestamp */}
-                    <div className="flex items-center justify-between text-[10px] text-slate-400 pt-0.5">
-                      <span className="flex items-center gap-1 font-medium text-slate-500">
-                        <Users2 className="h-3 w-3" />
-                        {room.memberCount} members
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Clock className="h-3 w-3" />
-                        {room.lastMessageTime}
-                      </span>
-                    </div>
-                  </div>
+                {/* Emoji Icon Avatar */}
+                <div
+                  className={cn(
+                    "h-8 w-8 rounded-lg flex items-center justify-center shrink-0 text-sm border shadow-2xs transition-colors",
+                    isSelected
+                      ? "bg-primary-50 text-primary-700 border-primary-200"
+                      : "bg-white text-slate-700 border-slate-200/90 group-hover:border-slate-300"
+                  )}
+                >
+                  {iconEmoji}
                 </div>
-              </div>
+
+                {/* Details */}
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between gap-1">
+                    <span
+                      className={cn(
+                        "text-xs font-bold truncate",
+                        isSelected ? "text-primary-950" : "text-slate-800 group-hover:text-primary-600"
+                      )}
+                    >
+                      {room.name}
+                    </span>
+
+                    {/* Online Count */}
+                    <div className="flex items-center gap-1 shrink-0 text-[10px] font-bold text-emerald-700">
+                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                      <span>{room.onlineCount}</span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-1.5 text-[10px] mt-0.5">
+                    <span className="text-slate-500 font-medium truncate">
+                      {room.hobbyName}
+                    </span>
+                    {matchesUserHobby && (
+                      <span className="inline-flex items-center gap-0.5 text-[9px] font-bold text-amber-700 bg-amber-50 px-1 py-0.2 rounded-full border border-amber-200/60 shrink-0">
+                        <Flame className="h-2 w-2 text-amber-600" />
+                        Match
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Last Message Preview */}
+                  <p className="text-[10px] text-slate-400 line-clamp-1 mt-0.5 italic">
+                    {room.lastMessageSnippet}
+                  </p>
+                </div>
+              </button>
             );
           })
         )}
