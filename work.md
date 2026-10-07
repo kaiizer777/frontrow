@@ -50,12 +50,12 @@ FRONTROW is a hobby learning platform where users can explore, learn, and connec
 - Type everything properly (interfaces/types for User, Course, BuddyRoom, Message, Quiz, Plan)
 
 **Checkboxes:**
-- [ ] `dummyData/users.ts` created
-- [ ] `dummyData/hobbies.ts` + `courses.ts` created
-- [ ] `dummyData/buddyRooms.ts` + `messages.ts` created
-- [ ] `dummyData/quizzes.ts` created
-- [ ] `dummyData/subscriptionPlans.ts` created
-- [ ] TypeScript interfaces/types defined for all of the above
+- [x] `dummyData/users.ts` created
+- [x] `dummyData/hobbies.ts` + `courses.ts` created
+- [x] `dummyData/buddyRooms.ts` + `messages.ts` created
+- [x] `dummyData/quizzes.ts` created
+- [x] `dummyData/subscriptionPlans.ts` created
+- [x] TypeScript interfaces/types defined for all of the above
 
 ---
 
