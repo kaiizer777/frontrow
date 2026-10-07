@@ -3,7 +3,6 @@
 import * as React from "react";
 import { AppShell } from "@/components/shared/AppShell";
 import {
-  SubscriptionHero,
   PricingTierCards,
   MentorGrid,
   BookSessionModal,
@@ -19,8 +18,7 @@ export default function SubscriptionPage() {
   const [selectedMentorId, setSelectedMentorId] = React.useState<string | null>(null);
   const [selectedPlanName, setSelectedPlanName] = React.useState<string | null>(null);
 
-  // References to scroll down to sections smoothly
-  const pricingRef = React.useRef<HTMLDivElement>(null);
+  // Reference to scroll down to mentors section
   const mentorsRef = React.useRef<HTMLDivElement>(null);
 
   const handleSelectPlan = (plan: SubscriptionPlan) => {
@@ -38,29 +36,14 @@ export default function SubscriptionPage() {
     setModalOpen(true);
   };
 
-  const scrollToPricing = () => {
-    pricingRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  const scrollToMentors = () => {
-    mentorsRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <AppShell>
       <div className="space-y-12 sm:space-y-16 pb-16">
-        {/* Hero Section */}
-        <SubscriptionHero
-          billingCycle={billingCycle}
-          onBillingCycleChange={setBillingCycle}
-          onExploreMentorsClick={scrollToMentors}
-          onViewPlansClick={scrollToPricing}
-        />
-
         {/* Pricing Tiers Section */}
-        <div ref={pricingRef} className="scroll-mt-20">
+        <div>
           <PricingTierCards
             billingCycle={billingCycle}
+            onBillingCycleChange={setBillingCycle}
             onSelectPlan={handleSelectPlan}
           />
         </div>

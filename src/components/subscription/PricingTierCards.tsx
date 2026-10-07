@@ -9,23 +9,56 @@ import { Button } from "@/components/ui/Button";
 
 interface PricingTierCardsProps {
   billingCycle: "monthly" | "annual";
+  onBillingCycleChange: (cycle: "monthly" | "annual") => void;
   onSelectPlan: (plan: SubscriptionPlan) => void;
 }
 
 export function PricingTierCards({
   billingCycle,
+  onBillingCycleChange,
   onSelectPlan,
 }: PricingTierCardsProps) {
   return (
     <div className="space-y-6">
       {/* Section Header */}
-      <div className="text-center max-w-2xl mx-auto space-y-2">
-        <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-slate-900 font-display">
+      <div className="text-center max-w-2xl mx-auto space-y-3">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 font-display">
           Transparent, Flexible Plans for Every Stage
         </h2>
-        <p className="text-xs sm:text-sm text-slate-600">
-          All plans include full community hub access. Upgrade or cancel anytime with one click.
+        <p className="text-xs sm:text-sm text-slate-600 max-w-xl mx-auto leading-relaxed">
+          Skip years of trial & error. Work 1-on-1 with vetted master artisans for live HD video sessions, 24h async project paint-overs, and custom roadmaps.
         </p>
+
+        {/* Billing Cycle Switcher */}
+        <div className="pt-2 flex items-center justify-center">
+          <div className="inline-flex items-center p-1.5 rounded-full bg-slate-100 border border-slate-200/80 shadow-inner">
+            <button
+              type="button"
+              onClick={() => onBillingCycleChange("monthly")}
+              className={`px-5 py-2 rounded-full text-xs font-bold transition-all ${
+                billingCycle === "monthly"
+                  ? "bg-white text-slate-900 shadow-sm font-extrabold"
+                  : "text-slate-500 hover:text-slate-900"
+              }`}
+            >
+              Monthly Billing
+            </button>
+            <button
+              type="button"
+              onClick={() => onBillingCycleChange("annual")}
+              className={`flex items-center gap-1.5 px-5 py-2 rounded-full text-xs font-bold transition-all ${
+                billingCycle === "annual"
+                  ? "bg-white text-slate-900 shadow-sm font-extrabold"
+                  : "text-slate-500 hover:text-slate-900"
+              }`}
+            >
+              <span>Annual Billing</span>
+              <span className="bg-emerald-600 text-white text-[10px] font-black px-2 py-0.5 rounded-full">
+                SAVE 25%
+              </span>
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* Pricing Cards Grid */}
