@@ -62,20 +62,45 @@ const activeHobbies = [
 export function Sidebar({ isOpen, onClose }: SidebarProps) {
   const pathname = usePathname();
 
+  // Prevent background scrolling on mobile when sidebar is open
+  React.useEffect(() => {
+    if (!isOpen) return;
+
+    const updateScrollLock = () => {
+      if (window.innerWidth < 768) {
+        document.body.style.overflow = "hidden";
+        document.body.style.touchAction = "none";
+      } else {
+        document.body.style.overflow = "";
+        document.body.style.touchAction = "";
+      }
+    };
+
+    updateScrollLock();
+    window.addEventListener("resize", updateScrollLock);
+
+    return () => {
+      document.body.style.overflow = "";
+      document.body.style.touchAction = "";
+      window.removeEventListener("resize", updateScrollLock);
+    };
+  }, [isOpen]);
+
   return (
     <>
       {/* Mobile Backdrop */}
       {isOpen && (
         <div
           onClick={onClose}
-          className="fixed inset-0 z-40 bg-slate-900/30 backdrop-blur-xs md:hidden"
+          onTouchMove={(e) => e.preventDefault()}
+          className="fixed inset-0 z-40 bg-slate-900/30 backdrop-blur-xs md:hidden overscroll-none"
           aria-hidden="true"
         />
       )}
 
       <aside
         className={cn(
-          "fixed top-0 bottom-0 left-0 z-40 w-64 border-r border-slate-200/80 bg-white flex flex-col justify-between transition-transform duration-200 ease-in-out md:translate-x-0 overflow-y-auto",
+          "fixed top-0 bottom-0 left-0 z-40 w-64 border-r border-slate-200/80 bg-white flex flex-col justify-between transition-transform duration-200 ease-in-out md:translate-x-0 overflow-y-auto overscroll-y-contain [-webkit-overflow-scrolling:touch]",
           isOpen ? "translate-x-0" : "-translate-x-full"
         )}
       >

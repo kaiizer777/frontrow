@@ -27,8 +27,39 @@ export function ChatRoomView({
     Record<string, ChatMessage[]>
   >(initialRoomMessages);
 
-  const [isMembersOpen, setIsMembersOpen] = React.useState(true);
+  const [isMembersOpen, setIsMembersOpen] = React.useState(false);
   const [isLiveJamOpen, setIsLiveJamOpen] = React.useState(false);
+
+  // Set desktop default for members drawer
+  React.useEffect(() => {
+    if (window.innerWidth >= 1280) {
+      setIsMembersOpen(true);
+    }
+  }, []);
+
+  // Lock background scroll when mobile members drawer is open
+  React.useEffect(() => {
+    if (!isMembersOpen) return;
+
+    const updateDrawerScrollLock = () => {
+      if (window.innerWidth < 1280) {
+        document.body.style.overflow = "hidden";
+        document.body.style.touchAction = "none";
+      } else {
+        document.body.style.overflow = "";
+        document.body.style.touchAction = "";
+      }
+    };
+
+    updateDrawerScrollLock();
+    window.addEventListener("resize", updateDrawerScrollLock);
+
+    return () => {
+      document.body.style.overflow = "";
+      document.body.style.touchAction = "";
+      window.removeEventListener("resize", updateDrawerScrollLock);
+    };
+  }, [isMembersOpen]);
 
   // Active messages for current room
   const activeMessages = roomMessagesMap[room.id] || [
